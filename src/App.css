@@ -1,42 +1,182 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+:root {
+  --color-gray: #969BAB;
+  --color-secondary: #18191F;
+  --color-accent: #e74c3c;
+  --color-white: white;
+  --color-blue: #1947E5;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-size: 62.5%;
+  font-family: 'Montserrat', sans-serif;
+  height: 100%; /* Para que ocupe toda la pantalla */
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
   text-align: center;
+  padding: 2rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Asegurar que .home esté centrado */
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px; /* Para que no sea muy ancho en pantallas grandes */
+  padding: 2rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Contenedor de la imagen y el círculo */
+.home .container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  margin-top: 5rem;
+}
+
+/* Círculo azul */
+.home .circle {
+  width: 25rem;
+  height: 25rem;
+  background-color: #3b82f6;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 0;
+}
+
+/* Imagen centrada */
+.home .image {
+  position: relative;
+  z-index: 1;
+  max-width: 90%;
+  height: 35rem;
+}
+
+/* Contenedor del texto y botón */
+.home .container-inicio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Título */
+.home .container-inicio h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-gray);
+}
+
+/* Párrafo */
+.home .container-inicio p {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 3rem;
+  color: var(--color-secondary);
+}
+
+/* Botón */
+.home .container-inicio button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  gap: 0.5rem;
+  font-size: 1.8rem;
+  color: white;
+  background-color: var(--color-secondary);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  height: 5rem;
+  width: 24rem;
+}
+
+.home .container-inicio button:hover {
+  background-color: #2563eb;
+}
+
+/* 📲 Estilos para TABLET */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
-  to {
-    transform: rotate(360deg);
+
+  .home .container {
+    max-width: 450px;
+    margin-top: 8rem;
+  }
+
+  .home .circle {
+    width: 30rem;
+    height: 30rem;
+  }
+
+  .home .image {
+    max-width: 85%;
+    height: 40rem;
+    width: 40rem;
+  }
+
+  .home .container-inicio h1 {
+    font-size: 3.5rem;
+  }
+
+  .home .container-inicio p {
+    font-size: 4rem;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* 💻 Estilos para DESKTOP */
+@media (min-width: 1024px) {
+  .home {
+    max-width: 1200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
-}
 
-.card {
-  padding: 2em;
-}
+  .home .container {
+    max-width: 500px;
+    margin-top: -3rem;
+  }
 
-.read-the-docs {
-  color: yellowgreen;
+  .home .circle {
+    width: 30rem;
+    height: 30rem;
+  }
+
+  .home .image {
+    max-width: 90%;
+    height: 35rem;
+    width: 35rem;
+  }
+
+  .home .container-inicio h1 {
+    font-size: 4rem;
+  }
+
+  .home .container-inicio p {
+    font-size: 5rem;
+  }
 }
