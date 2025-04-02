@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import './App.css';
+import inicioPro from "./assets/inicio-pro.png";
 
-function App() {
-  const [count, setCount] = useState(0)
+function Home() {
+  const navigate = useNavigate(); // Hook para redireccionar
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <div className="container">
+        <div className="circle"></div>
+        <img src={inicioPro} alt="Imagen" className="image" />
       </div>
-      <h1>Vite + Felipe</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+
+      <div className="container-inicio">
+        <h1>SportSocial</h1>
+        <p>¿Estás listo(a) para reunirte?</p>
+        <button onClick={() => navigate("/login")}>
+          <span>Hagamos Deporte</span>
+          <i className="fa-solid fa-chevron-right"></i>
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Felipe and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+function App() {
+  return (
+    <Router basename="/sport-social-app">
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<div>Página de Login</div>} />
+    </Routes>
+  </Router>
+  
+  );
+}
+
+export default App;
