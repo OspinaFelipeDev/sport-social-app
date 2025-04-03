@@ -1,0 +1,176 @@
+:root {
+    --color-gray: #969BAB;
+    --color-secondary: #18191F;
+    --color-accent: #e74c3c; /* Rojo */
+    --color-white: white; /* Gris claro */
+    --color-blue: #1947E5;
+    --color-blue-light: #2CC8F9;
+    --color-blue-join: #D6FCF7;
+    --color-orange: #F95A2C;
+    --color-pink: #FF89BB;
+}
+
+/* HEADER */
+.chooseContainer .header {
+    padding: 1.5rem;
+    background-color: var(--color-white);
+}
+
+.chooseContainer .containerHeader {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    position: relative;
+}
+
+.chooseContainer .iconoVolver {
+    font-size: 3rem;
+    color: var(--color-secondary);
+    margin-left: 1rem;
+}
+
+.chooseContainer h1 {
+    font-size: 2.4rem;
+    color: var(--color-secondary);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* MAIN */
+.chooseContainer .main {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* SECCIONES */
+.chooseContainer .containerCreate,
+.chooseContainer .containerJoin {
+    background-color: var(--color-white);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 2px solid var(--color-secondary);
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 100%;
+}
+
+.chooseContainer .containerCreate {
+    background: var(--color-pink);
+}
+
+.chooseContainer .containerJoin {
+    background: var(--color-blue-join);
+}
+
+.chooseContainer .containerCreate h2,
+.chooseContainer .containerJoin h2 {
+    font-size: 2.2rem;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+}
+
+.chooseContainer .containerCreate p,
+.chooseContainer .containerJoin p {
+    font-size: 1.6rem;
+    color: var(--color-secondary);
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    max-width: 90%;
+    margin: 0 auto 1.5rem;
+}
+
+/* Contenedor de imágenes */
+.chooseContainer .imageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.chooseContainer .imageContainer img {
+    max-width: 60%;
+    height: auto;
+    display: block;
+}
+
+/* Iconos */
+.chooseContainer .containerCreate .iconoGo {
+    color: var(--color-accent);
+}
+
+.chooseContainer .iconoGo {
+    font-size: 3rem;
+    color: var(--color-blue-light);
+    margin-top: 5rem;
+    margin-left: 1rem;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .chooseContainer .main {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem; /* Reduce el espacio entre tarjetas */
+    }
+
+    .chooseContainer .containerCreate,
+    .chooseContainer .containerJoin {
+        max-width: 500px; /* Mantiene el ancho */
+        padding: 1rem; /* Reduce el padding para disminuir la altura */
+    }
+
+    .chooseContainer .containerCreate h2,
+    .chooseContainer .containerJoin h2 {
+        font-size: 2rem; /* Reduce el tamaño del título */
+        margin-bottom: 0.5rem; /* Reduce el margen inferior */
+    }
+
+    .chooseContainer .containerCreate p,
+    .chooseContainer .containerJoin p {
+        font-size: 1.4rem; /* Reduce el tamaño del texto */
+        margin-bottom: 1rem; /* Reduce el margen inferior */
+    }
+
+    .chooseContainer .iconoGo {
+        font-size: 2.5rem; /* Reduce el tamaño del icono */
+        margin-top: 3rem; /* Reduce la distancia del icono */
+    }
+}
+
+
+
+@media (min-width: 1024px) {
+    .chooseContainer .header {
+        padding: 1.5rem;
+        background-color: var(--color-white);
+        margin-top: -12rem;
+    }
+
+
+    .chooseContainer .main {
+        flex-direction: row;
+        justify-content: center;
+        gap: 4rem;
+    }
+
+    .chooseContainer .containerCreate,
+    .chooseContainer .containerJoin {
+        max-width: 500px;
+    }
+
+    .chooseContainer h1 {
+        font-size: 3.3rem;
+    }
+
+    .chooseContainer .iconoGo {
+        font-size: 3rem;
+        color: var(--color-blue-light);
+        margin-top: 15rem;
+        margin-left: 1rem;
+    }
+}

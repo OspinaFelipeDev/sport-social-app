@@ -28,12 +28,12 @@ function Profile() {
           <span className={styles.age}>25</span>
         </div>
         <p className={styles.description}>
-          Apasionado por el fútbol y el baloncesto. Me encanta compartir buenos momentos y practicar deportes en equipo.
+          Apasionada por el fútbol y el baloncesto. Me encanta compartir buenos momentos y practicar deportes en equipo.
         </p>
         <div className={styles.sports}>
           <p>Fútbol, Baloncesto</p>
         </div>
-        <button className={styles.eventsButton} onClick={() => navigate("/events-today")}>
+        <button className={styles.eventsButton} onClick={() => navigate("/choose")}>
           Eventos para hoy
         </button>
       </div>

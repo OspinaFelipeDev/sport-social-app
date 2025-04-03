@@ -36,10 +36,10 @@
     border-radius: 10px;
 }
 
-h1 {
+.containerInicio h1 {
     font-size: 3.2rem;
     font-weight: 900;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
     color: var(--color-secondary);
 }
 
