@@ -1,0 +1,190 @@
+:root {
+    --color-gray: #969BAB;
+    --color-secondary: #18191F;
+    --color-accent: #e74c3c; /* Rojo */
+    --color-white: white; /* Gris claro */
+    --color-blue: #1947E5;
+    --color-blue-light: #2CC8F9;
+    --color-orange: #F95A2C;
+}
+
+/* 🌟 Estilos base (Mobile First) */
+.profileContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    background-color: var(--color-white);
+}
+
+/* 📌 Sección de la imagen de perfil */
+.profileHeader {
+    position: relative;
+    width: 100vw; /* Ocupa todo el ancho de la pantalla */
+    max-width: none; /* Elimina la restricción de ancho */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 45vh; /* Ajusta la altura */
+    background: var(--color-red);
+    border-bottom: 3px solid black;
+    border-radius: 0 0 15px 15px;
+}
+
+
+/* 📌 Imagen de perfil */
+.profileImage {
+    width: 100%;
+    max-width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 20px 0;
+}
+
+/* 🎯 Iconos de navegación */
+.iconoSalida,
+.iconoEditar {
+    position: absolute;
+    font-size: 3rem;
+    cursor: pointer;
+    color: var(--color-secondary);
+}
+
+/* 📌 Posicionando el icono de salir (izquierda, arriba de la imagen) */
+.iconoSalida {
+    top: 10px;  /* Lo coloca arriba */
+    left: 10px; /* Lo mueve a la izquierda */
+}
+
+/* 📌 Posicionando el icono de editar (derecha, arriba de la imagen) */
+.iconoEditar {
+    top: 10px;  /* Lo coloca arriba */
+    right: 10px; /* Lo mueve a la derecha */
+}
+
+/* Efecto hover */
+.iconoSalida:hover,
+.iconoEditar:hover {
+    color: var(--color-blue);
+}
+
+
+/* 📌 Información del usuario */
+.profileDetails {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: var(--color-white);
+}
+
+.nameAge {
+    display: flex;
+    align-items: baseline; /* Alinea los textos en la misma línea base */
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    line-height: 1;
+    margin: 0;
+}
+
+.age {
+    font-size: 1.8rem;
+    font-weight: 900;
+    line-height: 1;
+    margin: 0;
+    color: var(--color-blue-light);
+}
+
+.description {
+    font-size: 2rem;
+    margin: 10px 0;
+    color: #474A57;
+    text-align: left;
+}
+
+.sports {
+    margin-top: 15px;
+    text-align: left;
+}
+
+.sports h3 {
+    font-size: 1.8rem;
+    color: var(--color-secondary);
+}
+
+.sports p {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--color-blue-light);
+    margin-bottom: 2rem;
+}
+
+/* 📌 Botón de eventos */
+.eventsButton {
+    width: 100%;
+    height: 5rem;
+    background-color: var(--color-orange);
+    color: var(--color-white);
+    font-size: 1.7rem;
+    font-weight: 800;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+
+.eventsButton:hover {
+    background-color: var(--color-blue-light);
+}
+
+/* 📲 Estilos para TABLET */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .profileHeader {
+        width: 100vw; /* Ocupa todo el ancho de la pantalla */
+    }
+
+    h1 {
+        font-size: 3rem;
+        line-height: 1;
+        margin: 0;
+    }
+    
+    .age {
+        font-size: 2.5rem;
+        font-weight: 900;
+        line-height: 1;
+        margin: 0;
+        color: var(--color-blue-light);
+    }
+
+    .description {
+        font-size: 2.5rem;
+    }
+
+    .sports p {
+        font-size: 3rem;
+    }
+
+    .eventsButton {
+        width: 100%;
+        height: 6rem;
+        font-size: 2.3rem;
+    }
+}
+
+/* 💻 Estilos para DESKTOP */
+@media (min-width: 1024px) {
+    .sports p {
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: var(--color-blue-light);
+        margin-bottom: -0.7rem;
+    }
+}
