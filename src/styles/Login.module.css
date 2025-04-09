@@ -20,7 +20,8 @@
 }
 
 .logo {
-    width: 90%;
+    max-width: 150px;
+    width: 100%;
     height: auto;
     border-radius: 50%;
     object-fit: cover;
@@ -29,7 +30,7 @@
 }
 
 .containerInicio {
-    width: 130%;
+    width: 100%;
     max-width: 400px;
     padding: 20px;
     background-color: var(--color-white);
@@ -51,6 +52,7 @@
     margin-bottom: 1.5rem;
     border: 1.5px solid var(--color-secondary);
     height: 5rem;
+    width: 100%;
 }
 
 .inputContainer:hover {
@@ -121,12 +123,9 @@ input {
 }
 
 @media (min-width: 1024px) {
-    .logo {
-        width: 70%;
-        height: auto;
-        border-radius: 50%;
-        object-fit: cover;
-        display: block;
-        margin-bottom: 20px;
+    @media (min-width: 1024px) {
+        .logo {
+            max-width: 200px;
+        }
     }
 }

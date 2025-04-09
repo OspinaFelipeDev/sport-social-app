@@ -11,8 +11,6 @@
     --color-hover: #a2203d;
 }
 
-
-
 .whereContainer {
     display: flex;
     flex-direction: column;
@@ -183,3 +181,4 @@
 .createEventButton:hover {
     background-color: var(--color-hover);
 }
+

@@ -19,12 +19,10 @@ html, body {
 }
 
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: 100vh;
-  text-align: center;
 }
+
+
 
 /* Asegurar que .home esté centrado */
 .home {
@@ -149,10 +147,16 @@ body {
 /* 💻 Estilos para DESKTOP */
 @media (min-width: 1024px) {
   .home {
-    max-width: 1200px;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 2rem;
+  
+    /* 🛠️ Esto centra el bloque horizontalmente */
+    margin: 0 auto;
   }
 
   .home .container {

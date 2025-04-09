@@ -1,8 +1,10 @@
 :root {
     --color-gray: #969BAB;
     --color-secondary: #18191F;
-    --color-accent: #e74c3c; /* Rojo */
-    --color-white: white; /* Gris claro */
+    --color-accent: #e74c3c;
+    /* Rojo */
+    --color-white: white;
+    /* Gris claro */
     --color-blue: #1947E5;
     --color-blue-light: #2CC8F9;
     --color-blue-join: #D6FCF7;
@@ -115,30 +117,39 @@
     .chooseContainer .main {
         flex-direction: column;
         align-items: center;
-        gap: 1.5rem; /* Reduce el espacio entre tarjetas */
+        gap: 1.5rem;
+        /* Reduce el espacio entre tarjetas */
     }
 
     .chooseContainer .containerCreate,
     .chooseContainer .containerJoin {
-        max-width: 500px; /* Mantiene el ancho */
-        padding: 1rem; /* Reduce el padding para disminuir la altura */
+        max-width: 500px;
+        /* Mantiene el ancho */
+        padding: 1rem;
+        /* Reduce el padding para disminuir la altura */
     }
 
     .chooseContainer .containerCreate h2,
     .chooseContainer .containerJoin h2 {
-        font-size: 2rem; /* Reduce el tamaño del título */
-        margin-bottom: 0.5rem; /* Reduce el margen inferior */
+        font-size: 2rem;
+        /* Reduce el tamaño del título */
+        margin-bottom: 0.5rem;
+        /* Reduce el margen inferior */
     }
 
     .chooseContainer .containerCreate p,
     .chooseContainer .containerJoin p {
-        font-size: 1.4rem; /* Reduce el tamaño del texto */
-        margin-bottom: 1rem; /* Reduce el margen inferior */
+        font-size: 1.4rem;
+        /* Reduce el tamaño del texto */
+        margin-bottom: 1rem;
+        /* Reduce el margen inferior */
     }
 
     .chooseContainer .iconoGo {
-        font-size: 2.5rem; /* Reduce el tamaño del icono */
-        margin-top: 3rem; /* Reduce la distancia del icono */
+        font-size: 2.5rem;
+        /* Reduce el tamaño del icono */
+        margin-top: 3rem;
+        /* Reduce la distancia del icono */
     }
 }
 
@@ -148,29 +159,52 @@
     .chooseContainer .header {
         padding: 1.5rem;
         background-color: var(--color-white);
-        margin-top: -12rem;
     }
-
 
     .chooseContainer .main {
         flex-direction: row;
         justify-content: center;
-        gap: 4rem;
+        gap: 3rem;
+        align-items: stretch;
+      }
+
+      .chooseContainer .containerCreate,
+      .chooseContainer .containerJoin {
+        max-width: 450px;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+    .chooseContainer .containerCreate h2,
+    .chooseContainer .containerJoin h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
     }
 
-    .chooseContainer .containerCreate,
-    .chooseContainer .containerJoin {
-        max-width: 500px;
+    .chooseContainer .containerCreate p,
+    .chooseContainer .containerJoin p {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
     }
 
     .chooseContainer h1 {
-        font-size: 3.3rem;
+        font-size: 3rem;
     }
 
     .chooseContainer .iconoGo {
-        font-size: 3rem;
-        color: var(--color-blue-light);
-        margin-top: 15rem;
+        font-size: 2.5rem;
+        margin-top: 18rem;
         margin-left: 1rem;
+    }
+
+    .chooseContainer .imageContainer img {
+        max-width: 80%;
+        height: auto;
+    }
+
+    .chooseContainer .imageContainer {
+        padding: 1rem 0;
     }
 }
