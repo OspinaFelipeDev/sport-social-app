@@ -1,0 +1,148 @@
+:root {
+    --color-gray: #969bab;
+    --color-secondary: #18191f;
+    --color-accent: #e74c3c;
+    --color-white: white;
+    --color-blue: #1947e5;
+    --color-blue-light: #2cc8f9;
+    --color-blue-join: #d6fcf7;
+    --color-orange: #f95a2c;
+    --color-pink: #ff89bb;
+    --color-yellow: #ffbd12;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #f5f5f5;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    margin-bottom: -2rem;
+}
+
+.title {
+    margin: 10px 0;
+}
+
+.subtitle {
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+/* PROFILE IMAGE */
+.profileContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.profileImage {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 3px solid var(--color-secondary);
+    border-radius: 2rem;
+}
+
+.cameraIcon {
+    position: absolute;
+    bottom: 5px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* MAIN */
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.inputBox {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--color-secondary);
+    border-bottom: 5px solid var(--color-secondary);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.inputBox i {
+    margin-right: 10px;
+    color: #333;
+    font-size: inherit;
+    /* El ícono toma el tamaño del texto padre */
+}
+
+
+.inputBox input,
+.inputBox textarea {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    width: 100%;
+    padding: 8px;
+}
+
+.inputBox textarea {
+    resize: none;
+    height: 100px;
+}
+
+/* FOOTER */
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.saveButton {
+    background-color: var(--color-yellow);
+    color: var(--color-white);
+    width: 20rem;
+    height: 4.5rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+    border-radius: 13px;
+    border: 2px solid black;
+    border-bottom: 4px solid black;
+    cursor: pointer;
+}
+
+.saveButton:hover {
+    background-color: var(--color-blue-light);
+}
+
+.saveButton span {
+    color: var(--color-secondary);
+    font-weight: 800;
+}

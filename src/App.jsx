@@ -4,6 +4,9 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Choose from "./pages/Choose";
 import Where from "./pages/Where";
+import CreateAccount from "./pages/CreateAccount";
+import Terms from "./pages/Terms";
+import CompleteProfile from "./pages/CompleteProfile";
 import './App.css';
 
 
@@ -16,6 +19,9 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/choose" element={<Choose />} />
         <Route path="/where" element={<Where />} />
+        <Route path="/createAccount" element={<CreateAccount />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/completeProfile" element={<CompleteProfile />} />
       </Routes>
     </Router>
   );

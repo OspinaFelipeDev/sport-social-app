@@ -63,7 +63,7 @@ function Login() {
           <p>
             <span className={styles.questionText}>¿Eres nuevo(a)?</span>{" "}
             <span
-              onClick={() => navigate("/create")}
+              onClick={() => navigate("/createAccount")}
               className={styles.createAccountText}
             >
               Crear Cuenta

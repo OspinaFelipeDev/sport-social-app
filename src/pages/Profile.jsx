@@ -11,14 +11,15 @@ function Profile() {
       {/* 📌 Sección superior con imagen de perfil e iconos */}
       <div className={styles.profileHeader}>
         {/* Icono de salir (izquierda, arriba de la imagen) */}
-        <i className={`fa-solid fa-right-from-bracket ${styles.iconoSalida}`} 
-           onClick={() => navigate(-1)}></i>
+        <i className={`fa-solid fa-right-from-bracket ${styles.iconoSalida}`}
+        onClick={() => navigate("/login")}
+        ></i>
 
         <img src={profileImage} alt="Foto de perfil" className={styles.profileImage} />
 
         {/* Icono de editar perfil (derecha, arriba de la imagen) */}
         <i className={`fa-solid fa-user-pen ${styles.iconoEditar}`} 
-           onClick={() => navigate("/edit-profile")}></i>
+           onClick={() => navigate("/completeProfile")}></i>
       </div>
 
       {/* 📌 Sección inferior con la información del usuario */}
