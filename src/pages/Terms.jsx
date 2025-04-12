@@ -1,20 +1,15 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "../styles/Terms.module.css";
 
 const Terms = () => {
-  const navigate = useNavigate();
-
-  const handleGoBack = () => {
-    navigate("/createAccount"); // Cambia esta ruta si es diferente en tu app
-  };
 
   return (
     <div className={styles.termsContainer}>
       <header className={styles.header}>
-      <button onClick={handleGoBack} className="btn-back">
-        <i className="fa-solid fa-circle-arrow-left icono-volver"></i>
-      </button>
+      <Link to="/createAccount">
+          <i className={`fa-solid fa-circle-arrow-left ${styles.iconoVolver}`}></i>
+        </Link>
 
         <h1 className={styles.title}>Términos y condiciones</h1>
       </header>

@@ -1,0 +1,166 @@
+:root {
+    --color-gray: #969BAB;
+    --color-secondary: #18191F;
+    --color-accent: #e74c3c;
+    --color-white: white;
+    --color-blue: #1947E5;
+    --color-blue-light: #2CC8F9;
+    --color-blue-join: #D6FCF7;
+    --color-orange: #F95A2C;
+    --color-pink: #FF89BB;
+    --color-hover: #a2203d;
+}
+
+/* Aplica a toda la vista del componente */
+.meetingContainer {
+    background-color: var(--color-pink);
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--color-white);
+}
+
+/* Header completo */
+.header {
+    padding-bottom: 2rem;
+}
+
+/* Parte superior con el ícono de volver, deporte y chat */
+.containerName {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 15px;
+    gap: 10px;
+    /* Espacio entre ítems */
+    font-size: 3rem;
+}
+
+.iconoVolver,
+.chatIconContainer {
+    flex: 0 0 auto;
+    /* No crecen, no se encogen */
+}
+
+.iconoVolver {
+    font-size: 4rem;
+    color: var(--color-white);
+    cursor: pointer;
+    min-width: 40px;
+}
+
+.chatIconContainer img {
+    width: 5rem;
+    height: 5rem;
+    min-width: 5rem;
+}
+
+#deporte-seleccionado {
+    flex: 1;
+    /* Ocupa el espacio disponible */
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--color-white);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+.eventDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 5px;
+    padding: 10px 0;
+    font-size: 2rem;
+    color: var(--color-white);
+}
+
+.participantes {
+    text-align: center;
+    font-size: 2.3rem;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+#participantes-actual {
+    color: var(--color-accent);
+}
+
+#participantes-total {
+    color: var(--color-white);
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.main a {
+    width: 100%;
+    max-width: 300px;
+}
+
+.main button {
+    width: 100%;
+    height: 6rem;
+    padding: 12px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    background-color: var(--color-orange);
+    color: var(--color-white);
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.main button:hover {
+    background-color: var(--color-hover);
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+    gap: 10px;
+    margin-top: 4rem;
+}
+
+.footer a {
+    width: 100%;
+    max-width: 27rem;
+}
+
+.footer button {
+    background-color: #892D12;
+    color: var(--color-white);
+    width: 100%;
+    height: 6rem;
+    font-weight: 600;
+    font-size: 1.9rem;
+    border-radius: 13px;
+    border: none;
+}
+
+.footer button:hover {
+    background-color: var(--color-hover);
+}
+
+.footer p {
+    color: var(--color-white);
+    max-width: 250px;
+    font-size: 1.3rem;
+    margin-top: 2rem;
+}

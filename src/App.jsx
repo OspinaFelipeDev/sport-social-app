@@ -7,6 +7,7 @@ import Where from "./pages/Where";
 import CreateAccount from "./pages/CreateAccount";
 import Terms from "./pages/Terms";
 import CompleteProfile from "./pages/CompleteProfile";
+import Meeting from "./pages/Meeting";
 import './App.css';
 
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/createAccount" element={<CreateAccount />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/completeProfile" element={<CompleteProfile />} />
+        <Route path="/meeting" element={<Meeting />} />
       </Routes>
     </Router>
   );
