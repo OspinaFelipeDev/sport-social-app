@@ -93,7 +93,7 @@ input {
 }
 
 .loginButton:hover {
-    background-color: var(--color-blue);
+    background-color: var(--color-red);
 }
 
 .loginButton i {
