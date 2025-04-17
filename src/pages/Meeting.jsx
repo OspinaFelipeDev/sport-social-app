@@ -32,7 +32,7 @@ const Meeting = () => {
       </header>
 
       <main className={styles.main}>
-        <Link to="/asing">
+        <Link to="/assignPositions">
           <button><span>Asignar Posición*</span></button>
         </Link>
         <Link to="/tasks">
