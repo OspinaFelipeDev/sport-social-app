@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // ✅ Importar Link
 import styles from '../styles/Tasks.module.css';
 import chatIcon from '../assets/chat.png';
 
@@ -30,15 +31,16 @@ const Tasks = () => {
       {/* Encabezado */}
       <header className={styles.header}>
         <div className={styles.containerName}>
-          <a href="meeting.html">
+          <Link to="/meeting">
             <i className={`fa-solid fa-circle-arrow-left ${styles.iconoVolver}`}></i>
-          </a>
+          </Link>
           <p id="deporte-seleccionado">Tareas</p>
           <div className={styles.chatIconContainer}>
             <a
               href="tu-url-de-chat.html"
               className={styles.chatLink}
               target="_blank"
+              rel="noopener noreferrer"
               aria-label="Abrir chat"
             >
               <img src={chatIcon} alt="Chat" />
@@ -134,11 +136,11 @@ const Tasks = () => {
 
       {/* Pie de página */}
       <footer className={styles.footer}>
-        <a href="file-meeting.html">
+        <Link to="/file-meeting">
           <button className={styles.saveButton}>
             <span>Guardar</span>
           </button>
-        </a>
+        </Link>
         <p className={styles.footerNote}>
           *En algunos encuentros las tareas pueden variar
         </p>

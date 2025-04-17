@@ -110,7 +110,7 @@
     right: 10px;
 }
 
-button,
+
 .assignButton {
     width: 100%;
     padding: 10px;
@@ -141,8 +141,10 @@ button:active,
 }
 
 .tasksList li {
-    background: var(--color-back); /* Amarillo */
-    color: var(--color-secondary); /* Gris oscuro para buena legibilidad */
+    background: var(--color-back);
+    /* Amarillo */
+    color: var(--color-secondary);
+    /* Gris oscuro para buena legibilidad */
     padding: 8px;
     margin: 5px 0;
     border-radius: 5px;
@@ -174,14 +176,11 @@ button:active,
     cursor: pointer;
     margin-left: 10px;
     font-size: 1rem;
-  }
-  
-  .removeButton:hover {
+}
+
+.removeButton:hover {
     color: #900;
-  }
-  
-
-
+}
 
 .footer {
     display: flex;
@@ -191,7 +190,7 @@ button:active,
     text-align: center;
     padding: 15px;
     gap: 10px;
-    margin-top: 4rem;
+    margin-top: 1rem;
 }
 
 .footer a {
@@ -220,6 +219,4 @@ button:active,
     font-size: 1.3rem;
     margin-top: 2rem;
 }
-
-/* Colores diferenciados por optgroup (no se pueden estilizar directamente desde CSS Modules, se mantiene en global o se aplica JS si es necesario) */
 
