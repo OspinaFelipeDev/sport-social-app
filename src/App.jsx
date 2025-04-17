@@ -9,6 +9,7 @@ import Terms from "./pages/Terms";
 import CompleteProfile from "./pages/CompleteProfile";
 import Meeting from "./pages/Meeting";
 import AssignPositions from "./pages/AssignPositions";
+import Tasks from "./pages/Tasks";
 import './App.css';
 
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/completeProfile" element={<CompleteProfile />} />
         <Route path="/meeting" element={<Meeting />} />
         <Route path="/assignPositions" element={<AssignPositions />} />
+        <Route path="/tasks" element={<Tasks />} />
       </Routes>
     </Router>
   );
