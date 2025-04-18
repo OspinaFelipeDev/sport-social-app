@@ -271,7 +271,7 @@
 }
 
 .footer button:hover {
-    background-color: var(--color-pink);
+    background-color: var(--color-hover);
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {

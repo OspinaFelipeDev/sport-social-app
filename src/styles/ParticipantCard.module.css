@@ -1,0 +1,26 @@
+.card {
+    border: 2px solid transparent;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.bordeAzul {
+    border-color: #007BFF;
+}
+
+.bordeRojo {
+    border-color: #FF4136;
+}
+
+.foto {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc; /* Un borde gris claro */
+}
+
+

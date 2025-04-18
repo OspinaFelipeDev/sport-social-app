@@ -41,7 +41,7 @@ const Meeting = () => {
         <Link to="/participants">
           <button><span>Ver participantes</span></button>
         </Link>
-        <Link to="/file-meeting">
+        <Link to="/fileMeeting">
           <button><span>Mostrar ficha del encuentro</span></button>
         </Link>
       </main>

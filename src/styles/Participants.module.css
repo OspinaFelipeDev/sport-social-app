@@ -1,0 +1,110 @@
+:root {
+    --color-gray: #969BAB;
+    --color-secondary: #18191F;
+    --color-accent: #e74c3c;
+    --color-white: white;
+    --color-blue: #1947E5;
+    --color-blue-light: #2CC8F9;
+    --color-blue-join: #D6FCF7;
+    --color-orange: #F95A2C;
+    --color-pink: #FF89BB;
+    --color-hover: #a2203d;
+    --color-back: #FFBD12;
+}
+
+.participantsWrapper {
+    background-color: var(--color-pink);
+    min-height: 100vh;
+}
+
+.header {
+    width: 100%;
+}
+
+.containerName {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 2rem;
+}
+
+.iconoVolver {
+    font-size: 3rem;
+    color: var(--color-secondary);
+    cursor: pointer;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+    flex-grow: 1;
+    margin: 0;
+}
+
+.chatIconContainer img {
+    width: 35px;
+    height: 35px;
+}
+
+/* Asegurarse de que los estilos solo afecten a este componente */
+.participantsMain {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+    justify-items: center;
+}
+
+.participantCard {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--color-back);
+    border-radius: 10px;
+    border: 2px solid var(--color-secondary);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    max-width: 350px;
+    width: 100%;
+}
+
+.participantAvatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-pink);
+}
+
+.participantInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.participantName {
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: var(--color-secondary);
+}
+
+.participantNumber {
+    font-size: 1.5rem;
+    color: var(--color-white);
+}
+
+/* Para pantallas de tablet (2 fichas por fila) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .participantsMain {
+        grid-template-columns: repeat(2, 1fr); /* 2 fichas por fila */
+    }
+}
+
+/* Para pantallas de escritorio (3 fichas por fila) */
+@media (min-width: 1024px) {
+    .participantsMain {
+        grid-template-columns: repeat(3, 1fr); /* 3 fichas por fila */
+    }
+}

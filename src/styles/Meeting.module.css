@@ -45,7 +45,7 @@
 
 .iconoVolver {
     font-size: 4rem;
-    color: var(--color-white);
+    color: var(--color-secondary);
     cursor: pointer;
     min-width: 40px;
 }

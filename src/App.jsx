@@ -10,6 +10,9 @@ import CompleteProfile from "./pages/CompleteProfile";
 import Meeting from "./pages/Meeting";
 import AssignPositions from "./pages/AssignPositions";
 import Tasks from "./pages/Tasks";
+import Participants from "./pages/Participants";
+import FileMeeting from "./pages/FileMeeting";
+import ParticipantCard from "./pages/ParticipantCard";
 import './App.css';
 
 
@@ -28,6 +31,9 @@ function App() {
         <Route path="/meeting" element={<Meeting />} />
         <Route path="/assignPositions" element={<AssignPositions />} />
         <Route path="/tasks" element={<Tasks />} />
+        <Route path="/participants" element={<Participants />} />
+        <Route path="/fileMeeting" element={<FileMeeting />} />
+        <Route path="/participantCars" element={<ParticipantCard />} />
       </Routes>
     </Router>
   );

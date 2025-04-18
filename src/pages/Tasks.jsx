@@ -60,8 +60,8 @@ const Tasks = () => {
             <select
               id="task-select"
               className={styles.taskSelect}
-              value={selectedTask}
-              onChange={(e) => setSelectedTask(e.target.value)}
+              value={selectedTask} // Controlando el valor seleccionado
+              onChange={(e) => setSelectedTask(e.target.value)} // Actualizando el estado
             >
               <option value="" disabled>Elige una tarea</option>
               <option value="implementos">Llevar implementos deportivos</option>
@@ -82,8 +82,8 @@ const Tasks = () => {
             <select
               id="participant-select"
               className={styles.participantSelect}
-              value={selectedParticipant}
-              onChange={(e) => setSelectedParticipant(e.target.value)}
+              value={selectedParticipant} // Controlando el valor seleccionado
+              onChange={(e) => setSelectedParticipant(e.target.value)} // Actualizando el estado
             >
               <option value="" disabled>Selecciona un participante</option>
               <optgroup label="Equipo Rojo">
@@ -136,7 +136,7 @@ const Tasks = () => {
 
       {/* Pie de página */}
       <footer className={styles.footer}>
-        <Link to="/file-meeting">
+        <Link to="/meeting">
           <button className={styles.saveButton}>
             <span>Guardar</span>
           </button>
