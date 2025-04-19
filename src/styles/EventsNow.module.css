@@ -1,0 +1,133 @@
+:root {
+    --color-gray: #969BAB;
+    --color-secondary: #18191F;
+    --color-accent: #e74c3c;
+    --color-white: white;
+    --color-blue: #1947E5;
+    --color-blue-light: #2CC8F9;
+    --color-blue-join: #D6FCF7;
+    --color-orange: #F95A2C;
+    --color-pink: #FF89BB;
+    --color-hover: #a2203d;
+    --color-back: #FFBD12;
+  }
+  
+  .header {
+    width: 100%;
+    padding: 12px 16px;
+    position: relative;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+  
+  .containerName {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra el contenido (título) */
+    width: 100%;
+  }
+  
+  .iconoVolver {
+    position: absolute;
+    left: 0; /* Lo deja alineado a la izquierda */
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  #deporteSeleccionado {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--color-secondary);
+    text-align: center;
+    white-space: nowrap;
+  }
+  
+  .wrapper {
+    background-color: var(--color-blue-join);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 10px;
+  }
+  
+  .main {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 columna por defecto (mobile) */
+    gap: 10px;
+    width: 100%;
+  }
+  
+  /* Tarjeta reusada desde acá si no usas módulo */
+  .tarjetaEncuentro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    width: 100%;
+    gap: 10px;
+  }
+  
+  .tarjetaEncuentro:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .columna {
+    width: 100%;
+  }
+  
+  .deporte h2 {
+    font-size: 18px;
+    margin: 0;
+    color: #333;
+  }
+  
+  .deporte p {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .hora p {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--color-gray);
+    margin: 0;
+  }
+  
+  .botonFlecha {
+    display: inline-block;
+    text-decoration: none;
+    color: #007bff;
+    font-size: 18px;
+    transition: transform 0.2s;
+  }
+  
+  .botonFlecha:hover {
+    transform: scale(1.2);
+  }
+  
+  .imagen img {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .main {
+        grid-template-columns: 1fr 1fr; /* 2 columnas */
+      }
+  }
+
+  @media (min-width: 1024px) {
+    .main {
+        grid-template-columns: 1fr 1fr; /* 2 columnas */
+      }
+  }
+  

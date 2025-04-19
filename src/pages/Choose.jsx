@@ -18,28 +18,28 @@ const Choose = () => {
 
       <main className={styles.main}>
         {/* Sección Crear */}
-        <section className={styles.containerCreate}>
-          <h2>Crear</h2>
-          <p>Crea un encuentro deportivo, gestiona y sé el administrador del grupo.</p>
-          <div className={styles.imageContainer}>
-            <img src={chooseImage} alt="Crear Encuentro" />
-            <Link to="/where">
+        <Link to="/where" className={styles.linkContainer}>
+          <section className={styles.containerCreate}>
+            <h2>Crear</h2>
+            <p>Crea un encuentro deportivo, gestiona y sé el administrador del grupo.</p>
+            <div className={styles.imageContainer}>
+              <img src={chooseImage} alt="Crear Encuentro" />
               <i className={`fa-solid fa-chevron-right ${styles.iconoGo}`}></i>
-            </Link>
-          </div>
-        </section>
+            </div>
+          </section>
+        </Link>
 
         {/* Sección Unirse */}
-        <section className={styles.containerJoin}>
-          <h2>Unirse</h2>
-          <p>Únete a un encuentro deportivo, escoge el deporte y la posición en la cual vas a participar.</p>
-          <div className={styles.imageContainer}>
-            <img src={joinImage} alt="Unirse a Encuentro" />
-            <Link to="/events">
+        <Link to="/eventsNow" className={styles.linkContainer}>
+          <section className={styles.containerJoin}>
+            <h2>Unirse</h2>
+            <p>Únete a un encuentro deportivo, escoge el deporte y la posición en la cual vas a participar.</p>
+            <div className={styles.imageContainer}>
+              <img src={joinImage} alt="Unirse a Encuentro" />
               <i className={`fa-solid fa-chevron-right ${styles.iconoGo}`}></i>
-            </Link>
-          </div>
-        </section>
+            </div>
+          </section>
+        </Link>
       </main>
     </div>
   );

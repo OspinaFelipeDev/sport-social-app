@@ -1,0 +1,423 @@
+:root {
+    --color-gray: #969BAB;
+    --color-secondary: #18191F;
+    --color-accent: #e74c3c;
+    --color-white: white;
+    --color-blue: #1947E5;
+    --color-blue-light: #2CC8F9;
+    --color-blue-join: #D6FCF7;
+    --color-orange: #F95A2C;
+    --color-pink: #FF89BB;
+    --color-hover: #a2203d;
+}
+
+.wrapper {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-blue-join);
+}
+
+.header {
+    padding: 10px;
+}
+
+.containerName {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px 15px;
+    margin-bottom: 2rem;
+}
+
+.iconoVolver {
+    font-size: 2.5rem;
+    color: var(--color-secondary);
+}
+
+.titulo {
+    font-size: 1.9rem;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.chatIconContainer img {
+    width: 35px;
+    height: auto;
+}
+
+.choosePositionMain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    background-image: url('../assets/field.jpg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 10px;
+}
+
+.field {
+    position: relative;
+    width: 90vw;
+    max-width: 800px;
+    height: 90vh;
+    max-height: 600px;
+}
+
+.player {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 700;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.blue span {
+    color: blue;
+}
+
+.red span {
+    color: red;
+}
+
+.dropdownBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+    padding: 5px;
+}
+
+.dropdownMenu {
+    margin-top: 8px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dropdownContent {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    list-style: none;
+    padding: 5px 0;
+    margin: 0;
+    z-index: 10;
+    width: max-content;
+    min-width: 100px;
+}
+
+.dropdownContent li {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.dropdownContent li:hover {
+    background-color: #ddd;
+}
+
+.player:hover .dropdownContent {
+    display: block;
+}
+
+/* Posiciones adaptadas para azul */
+.bluePosition1 {
+    top: 16%;
+    left: 50%;
+}
+
+.bluePosition2 {
+    top: 23%;
+    left: 30%;
+}
+
+.bluePosition3 {
+    top: 23%;
+    left: 70%;
+}
+
+.bluePosition4 {
+    top: 23%;
+    left: 11%;
+}
+
+.bluePosition5 {
+    top: 23%;
+    left: 88%;
+}
+
+.bluePosition6 {
+    top: 31%;
+    left: 21%;
+}
+
+.bluePosition7 {
+    top: 31%;
+    left: 50%;
+}
+
+.bluePosition8 {
+    top: 31%;
+    left: 81%;
+}
+
+.bluePosition9 {
+    top: 42%;
+    left: 25%;
+}
+
+.bluePosition10 {
+    top: 42%;
+    left: 50%;
+}
+
+.bluePosition11 {
+    top: 42%;
+    left: 75%;
+}
+
+/* Posiciones adaptadas para rojo */
+.redPosition1 {
+    top: 84%;
+    left: 50%;
+}
+
+.redPosition2 {
+    top: 77%;
+    left: 30%;
+}
+
+.redPosition3 {
+    top: 77%;
+    left: 70%;
+}
+
+.redPosition4 {
+    top: 77%;
+    left: 11%;
+}
+
+.redPosition5 {
+    top: 77%;
+    left: 88%;
+}
+
+.redPosition6 {
+    top: 70%;
+    left: 25%;
+}
+
+.redPosition7 {
+    top: 70%;
+    left: 50%;
+}
+
+.redPosition8 {
+    top: 70%;
+    left: 75%;
+}
+
+.redPosition9 {
+    top: 58%;
+    left: 25%;
+}
+
+.redPosition10 {
+    top: 58%;
+    left: 50%;
+}
+
+.redPosition11 {
+    top: 58%;
+    left: 75%;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.confirmBtn {
+    background-color: var(--color-blue-light);
+    color: var(--color-white);
+    width: 27rem;
+    height: 5rem;
+    font-weight: 600;
+    font-size: 2.3rem;
+    border-radius: 13px;
+    border: none;
+    margin: 22px auto 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirmBtn:hover {
+    background-color: var(--color-blue);
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .choosePositionMain {
+        background-size: 89% 90%;
+    }
+
+    .bluePosition1 {
+        top: 17.5%;
+        left: 50%;
+    }
+
+    .redPosition1 {
+        top: 83%;
+        left: 50%;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .containerName {
+        margin-bottom: 0rem;
+    }
+
+    .choosePositionMain {
+        background-size: 50% 98%;
+    }
+
+    /* Posiciones adaptadas para azul */
+.bluePosition1 {
+    top: 19%;
+    left: 50%;
+}
+
+.bluePosition2 {
+    top: 25%;
+    left: 32%;
+}
+
+.bluePosition3 {
+    top: 25%;
+    left: 68%;
+}
+
+.bluePosition4 {
+    top: 25%;
+    left: 16%;
+}
+
+.bluePosition5 {
+    top: 25%;
+    left: 84%;
+}
+
+.bluePosition6 {
+    top: 32%;
+    left: 24%;
+}
+
+.bluePosition7 {
+    top: 32%;
+    left: 50%;
+}
+
+.bluePosition8 {
+    top: 32%;
+    left: 77%;
+}
+
+.bluePosition9 {
+    top: 47%;
+    left: 24%;
+}
+
+.bluePosition10 {
+    top: 42%;
+    left: 50%;
+}
+
+.bluePosition11 {
+    top: 47%;
+    left: 77%;
+}
+
+/* Posiciones adaptadas para rojo */
+.redPosition1 {
+    top: 81%;
+    left: 50%;
+}
+
+.redPosition2 {
+    top: 75%;
+    left: 32%;
+}
+
+.redPosition3 {
+    top: 75%;
+    left: 68%;
+}
+
+.redPosition4 {
+    top: 75%;
+    left: 16%;
+}
+
+.redPosition5 {
+    top: 75%;
+    left: 84%;
+}
+
+.redPosition6 {
+    top: 68%;
+    left: 24%;
+}
+
+.redPosition7 {
+    top: 68%;
+    left: 50%;
+}
+
+.redPosition8 {
+    top: 68%;
+    left: 77%;
+}
+
+.redPosition9 {
+    top: 53%;
+    left: 24%;
+}
+
+.redPosition10 {
+    top: 58%;
+    left: 50%;
+}
+
+.redPosition11 {
+    top: 53%;
+    left: 77%;
+}
+
+    .confirmBtn {
+        margin: 0.2rem auto 10px auto;
+    }
+}

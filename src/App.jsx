@@ -13,6 +13,10 @@ import Tasks from "./pages/Tasks";
 import Participants from "./pages/Participants";
 import FileMeeting from "./pages/FileMeeting";
 import ParticipantCard from "./pages/ParticipantCard";
+import EventCard from "./pages/EventCard";
+import EventsNow from "./pages/EventsNow";
+import ChoosePosition from "./pages/ChoosePosition";
+import ConfirmedParticipation from "./pages/ConfirmedParticipation";
 import './App.css';
 
 
@@ -34,6 +38,10 @@ function App() {
         <Route path="/participants" element={<Participants />} />
         <Route path="/fileMeeting" element={<FileMeeting />} />
         <Route path="/participantCars" element={<ParticipantCard />} />
+        <Route path="/eventCard" element={<EventCard />} />
+        <Route path="/eventsNow" element={<EventsNow />} />
+        <Route path="/choosePosition" element={<ChoosePosition />} />
+        <Route path="/confirmedParticipation" element={<ConfirmedParticipation />} />
       </Routes>
     </Router>
   );

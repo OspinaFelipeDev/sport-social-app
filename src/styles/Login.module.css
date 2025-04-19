@@ -1,45 +1,51 @@
 :root {
-    --color-gray: #969BAB;
-    --color-secondary: #18191F;
-    --color-red: #F95A2C;
-    --color-white: white;
-    --color-blue: #1947E5;
-    --color-yellow: #FFBD12;
+    --color-gray: #7A7F9A;
+    --color-secondary: #1E1E2F;
+    --color-red: #FF6B6B;
+    --color-white: #FFFFFF;
+    --color-blue: #3E8EF7;
+    --color-yellow: #FFD93D;
+    --color-background: #F4F6FA;
 }
 
-/* 🌟 Estilos base (MOBILE FIRST) */
 .loginContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: var(--color-white);
-    text-align: center;
+    background-color: var(--color-background);
     padding: 20px;
+    text-align: center;
 }
 
 .logo {
-    max-width: 150px;
+    max-width: 160px;
     width: 100%;
     height: auto;
     border-radius: 50%;
     object-fit: cover;
-    display: block;
     margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 .containerInicio {
     width: 100%;
-    max-width: 400px;
-    padding: 20px;
+    max-width: 420px;
+    padding: 30px 25px;
     background-color: var(--color-white);
-    border-radius: 10px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
 .containerInicio h1 {
-    font-size: 3.2rem;
-    font-weight: 900;
+    font-size: 2.8rem;
+    font-weight: 800;
     margin-bottom: 2rem;
     color: var(--color-secondary);
 }
@@ -47,22 +53,23 @@
 .inputContainer {
     display: flex;
     align-items: center;
-    padding: 12px;
-    border-radius: 8px;
+    padding: 14px;
+    border-radius: 10px;
     margin-bottom: 1.5rem;
     border: 1.5px solid var(--color-secondary);
+    background-color: #fdfdfd;
     height: 5rem;
-    width: 100%;
+    transition: border 0.3s ease;
 }
 
 .inputContainer:hover {
-    border: 1.5px solid var(--color-yellow);
+    border-color: var(--color-blue);
 }
 
 .inputContainer i {
-    margin-right: 10px;
+    margin-right: 12px;
     color: var(--color-secondary);
-    font-size: 1.6rem;
+    font-size: 1.8rem;
 }
 
 input {
@@ -71,33 +78,34 @@ input {
     background: none;
     outline: none;
     font-size: 1.6rem;
+    color: var(--color-secondary);
 }
 
 .loginButton {
     width: 100%;
     height: 5rem;
     padding: 12px;
-    background-color: var(--color-secondary);
+    background-color: var(--color-blue);
     color: var(--color-white);
-    font-size: 1.7rem;
+    font-size: 1.6rem;
+    font-weight: bold;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    transition: background 0.3s;
-    margin-top: 4rem;
-    margin-bottom: 3rem;
+    gap: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .loginButton:hover {
-    background-color: var(--color-blue);
+    background-color: #2563eb;
+    transform: translateY(-2px);
 }
 
 .loginButton i {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 }
 
 .containerCrear {
@@ -105,7 +113,8 @@ input {
 }
 
 .containerCrear p {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    color: var(--color-gray);
 }
 
 .questionText {
@@ -114,8 +123,9 @@ input {
 
 .createAccountText {
     color: var(--color-red);
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
+    transition: text-decoration 0.2s ease;
 }
 
 .createAccountText:hover {
@@ -123,9 +133,7 @@ input {
 }
 
 @media (min-width: 1024px) {
-    @media (min-width: 1024px) {
-        .logo {
-            max-width: 200px;
-        }
+    .logo {
+        max-width: 200px;
     }
 }

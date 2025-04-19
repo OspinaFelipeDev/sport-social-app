@@ -1,0 +1,161 @@
+:root {
+    --color-gray: #969BAB;
+    --color-secondary: #18191F;
+    --color-accent: #e74c3c;
+    --color-white: white;
+    --color-blue: #1947E5;
+    --color-blue-light: #2CC8F9;
+    --color-blue-join: #D6FCF7;
+    --color-orange: #F95A2C;
+    --color-pink: #FF89BB;
+    --color-hover: #a2203d;
+  }
+  
+  .wrapper {
+    padding: 1rem;
+    background: var(--color-blue-join);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  .header {
+    text-align: center;
+  }
+  
+  .containerName {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    padding: 10px 15px;
+  }
+  
+  .iconoVolver {
+    font-size: 3.5rem;
+    color: var(--color-secondary);
+  }
+  
+  .titulo {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;
+  }
+  
+  .chatIconContainer img {
+    width: 4rem;
+    height: auto;
+  }
+  
+  .main {
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .main p {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #000000;
+    margin: 1rem auto;
+    max-width: 90%;
+  }
+  
+  .highlight {
+    font-weight: bold;
+    color: var(--color-secondary);
+  }
+  
+  .playerCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--color-blue-light);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 11rem;
+    max-width: 600px;
+    margin: 4rem auto;
+  }
+  
+  .playerPhoto {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  
+  .playerPhoto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .playerInfo {
+    flex: 2;
+    padding: 0 1rem;
+  }
+  
+  .playerName {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .teamName {
+    font-size: 1.5rem;
+    color: #666;
+    margin: 0.3rem 0 0;
+  }
+  
+  .playerPosition {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .playerPosition span {
+    color: #000000;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 2rem;
+    transition: background 0.3s;
+    margin-bottom: 3rem;
+  }
+  
+  .button:hover {
+    background-color: var(--color-blue-light);
+  }
+  
+  .footer p {
+    margin-top: 0.5rem;
+    color: var(--color-accent);
+    max-width: 80%;
+    font-size: 1.6rem;
+  }
+  

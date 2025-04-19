@@ -1,190 +1,190 @@
 :root {
     --color-gray: #969BAB;
     --color-secondary: #18191F;
-    --color-accent: #e74c3c; /* Rojo */
-    --color-white: white; /* Gris claro */
+    --color-accent: #e74c3c;
+    --color-white: #ffffff;
     --color-blue: #1947E5;
     --color-blue-light: #2CC8F9;
     --color-orange: #F95A2C;
+    --color-light-gray: #F4F4F6;
 }
 
-/* 🌟 Estilos base (Mobile First) */
+/* 🌟 Mobile First */
 .profileContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    height: 100vh;
-    background-color: var(--color-white);
+    min-height: 100vh;
+    background-color: var(--color-light-gray);
+    padding: 2rem;
 }
 
-/* 📌 Sección de la imagen de perfil */
+/* 📌 Header con sombra y curvas */
 .profileHeader {
     position: relative;
-    width: 100vw; /* Ocupa todo el ancho de la pantalla */
-    max-width: none; /* Elimina la restricción de ancho */
+    width: 100%;
+    min-height: 45vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 45vh; /* Ajusta la altura */
-    background: var(--color-red);
-    border-bottom: 3px solid black;
-    border-radius: 0 0 15px 15px;
+    background: var(--color-accent);
+    border-radius: 0 0 2rem 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
 }
 
-
-/* 📌 Imagen de perfil */
+/* 📸 Imagen redonda con sombra */
 .profileImage {
-    width: 100%;
-    max-width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     object-fit: cover;
-    margin: 20px 0;
+    border: 4px solid white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* 🎯 Iconos de navegación */
+/* 🎯 Iconos */
 .iconoSalida,
 .iconoEditar {
     position: absolute;
-    font-size: 3rem;
+    font-size: 2.8rem;
+    color: white;
     cursor: pointer;
-    color: var(--color-secondary);
+    transition: transform 0.2s ease, color 0.3s ease;
 }
 
-/* 📌 Posicionando el icono de salir (izquierda, arriba de la imagen) */
 .iconoSalida {
-    top: 10px;  /* Lo coloca arriba */
-    left: 10px; /* Lo mueve a la izquierda */
+    top: 15px;
+    left: 15px;
 }
 
-/* 📌 Posicionando el icono de editar (derecha, arriba de la imagen) */
 .iconoEditar {
-    top: 10px;  /* Lo coloca arriba */
-    right: 10px; /* Lo mueve a la derecha */
+    top: 15px;
+    right: 15px;
 }
 
-/* Efecto hover */
 .iconoSalida:hover,
 .iconoEditar:hover {
-    color: var(--color-blue);
+    transform: scale(1.1);
+    color: var(--color-blue-light);
 }
 
-
-/* 📌 Información del usuario */
+/* 📄 Info del perfil */
 .profileDetails {
     width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    background-color: var(--color-white);
+    max-width: 450px;
+    background-color: white;
+    margin-top: -2rem;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
 }
 
 .nameAge {
     display: flex;
-    align-items: baseline; /* Alinea los textos en la misma línea base */
     justify-content: center;
-    gap: 3rem;
-    margin-bottom: 2rem;
+    align-items: baseline;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
 }
 
 h1 {
-    font-size: 2.5rem;
-    line-height: 1;
+    font-size: 2.4rem;
     margin: 0;
+    color: var(--color-secondary);
 }
 
 .age {
     font-size: 1.8rem;
-    font-weight: 900;
-    line-height: 1;
-    margin: 0;
+    font-weight: bold;
     color: var(--color-blue-light);
 }
 
 .description {
-    font-size: 2rem;
-    margin: 10px 0;
+    font-size: 1.6rem;
     color: #474A57;
     text-align: left;
+    margin: 1.5rem 0;
+    line-height: 1.6;
 }
 
+/* 🏀 Deportes */
 .sports {
-    margin-top: 15px;
     text-align: left;
+    margin-bottom: 1rem;
 }
 
 .sports h3 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: var(--color-secondary);
+    margin-bottom: 0.5rem;
 }
 
 .sports p {
-    font-size: 2.2rem;
-    font-weight: 900;
-    color: var(--color-blue-light);
-    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-blue);
+    margin: 0;
 }
 
-/* 📌 Botón de eventos */
+/* 🎟 Botón de eventos */
 .eventsButton {
     width: 100%;
-    height: 5rem;
+    height: 4.5rem;
     background-color: var(--color-orange);
     color: var(--color-white);
-    font-size: 1.7rem;
-    font-weight: 800;
+    font-size: 1.6rem;
+    font-weight: 600;
     border: none;
-    border-radius: 8px;
+    border-radius: 0.8rem;
     cursor: pointer;
-    margin-top: 20px;
-    transition: background 0.3s;
+    margin-top: 2rem;
+    transition: background 0.3s, transform 0.2s ease;
 }
 
 .eventsButton:hover {
-    background-color: var(--color-blue-light);
+    background-color: var(--color-blue);
+    transform: translateY(-2px);
 }
 
-/* 📲 Estilos para TABLET */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .profileHeader {
-        width: 100vw; /* Ocupa todo el ancho de la pantalla */
+/* 📱 Tablet */
+@media (min-width: 768px) {
+    h1 {
+        font-size: 2.8rem;
     }
 
-    h1 {
-        font-size: 3rem;
-        line-height: 1;
-        margin: 0;
-    }
-    
     .age {
-        font-size: 2.5rem;
-        font-weight: 900;
-        line-height: 1;
-        margin: 0;
-        color: var(--color-blue-light);
+        font-size: 2.2rem;
     }
 
     .description {
-        font-size: 2.5rem;
+        font-size: 1.8rem;
     }
 
     .sports p {
-        font-size: 3rem;
+        font-size: 2.2rem;
     }
 
     .eventsButton {
-        width: 100%;
-        height: 6rem;
-        font-size: 2.3rem;
+        font-size: 1.8rem;
+        height: 5.2rem;
     }
 }
 
-/* 💻 Estilos para DESKTOP */
+/* 💻 Desktop */
 @media (min-width: 1024px) {
+    .profileImage {
+        width: 180px;
+        height: 180px;
+    }
+
+    .description {
+        font-size: 2rem;
+    }
+
     .sports p {
-        font-size: 2.2rem;
-        font-weight: 900;
-        color: var(--color-blue-light);
-        margin-bottom: -0.7rem;
+        font-size: 2.3rem;
     }
 }
