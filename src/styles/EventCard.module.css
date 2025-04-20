@@ -3,36 +3,43 @@
     align-items: center;
     justify-content: space-between;
     background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 16px;
-    gap: 12px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    gap: 20px;
     width: 100%;
-    transition: transform 0.2s ease-in-out;
+    max-width: 400px;      /* Centrado y límite de tamaño */
+    margin: 0 auto;        /* Centrado horizontal */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+    border: 1px solid #e0e0e0;
 }
 
 .tarjetaEncuentro:hover {
-    transform: scale(1.02);
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 /* Columna del deporte y ubicación */
 .columnaDeporte {
-    flex: 1;
+    flex: 2;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .columnaDeporte h2 {
-    font-size: 18px;
-    margin: 0 0 4px 0;
+    font-size: 20px;
+    margin: 0 0 6px 0;
     color: #333;
+    font-weight: 600;
+    text-transform: capitalize; /* Hacer el texto más estilizado */
 }
 
 .columnaDeporte p {
     margin: 0;
-    font-size: 14px;
-    color: #666;
+    font-size: 15px;
+    color: #777;
+    line-height: 1.5; /* Mejorar la legibilidad */
 }
 
 /* Columna de la hora y flecha */
@@ -41,45 +48,49 @@
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
-    gap: 4px;
+    gap: 6px;
 }
 
 .columnaHora p {
     margin: 0;
     font-size: 16px;
-    font-weight: bold;
-    color: #888;
+    font-weight: 500;
+    color: #555;
 }
 
 .botonFlecha {
-    font-size: 18px;
+    font-size: 20px;
     color: #007bff;
     text-decoration: none;
-    transition: transform 0.2s;
+    transition: transform 0.2s ease-in-out, color 0.3s ease;
 }
 
 .botonFlecha:hover {
     transform: scale(1.2);
+    color: #0056b3; /* Un azul más oscuro para el hover */
 }
 
 /* Columna de la imagen del deporte */
 .columnaImagen {
-    width: 40px;
-    height: 40px;
+    width: 50px; /* Un poco más grande para un impacto visual */
+    height: 50px;
     flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .columnaImagen img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: contain;
+    border-radius: 50%; /* Para hacer la imagen redonda */
+    border: 2px solid #e0e0e0; /* Borde suave alrededor de la imagen */
 }
 
 @media (min-width: 1024px) {
+    /* Puedes usar esto si quieres agrandar en pantallas grandes */
     .tarjetaEncuentro {
-        max-width: 400px;
-        /* o el valor que te guste visualmente */
-        margin: 0 auto;
-        /* centra la tarjeta */
+      max-width: 600px;
     }
-}
+  }

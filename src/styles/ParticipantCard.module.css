@@ -1,10 +1,17 @@
 .card {
     border: 2px solid transparent;
-    padding: 1rem;
-    border-radius: 10px;
-    margin: 10px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
 .bordeAzul {
@@ -20,7 +27,11 @@
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #ccc; /* Un borde gris claro */
+    border: 3px solid #ccc; /* Borde más grueso para un efecto más destacado */
+    transition: border-color 0.3s ease, transform 0.3s ease;
 }
 
-
+.foto:hover {
+    border-color: #007BFF; /* Cambiar a un azul cuando se pase el ratón */
+    transform: scale(1.05); /* Agrandar ligeramente la imagen en hover */
+}

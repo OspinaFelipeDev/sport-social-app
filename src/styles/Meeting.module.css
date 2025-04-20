@@ -9,6 +9,7 @@
     --color-orange: #F95A2C;
     --color-pink: #FF89BB;
     --color-hover: #a2203d;
+    --color-back: #FFBD12;
 }
 
 /* Aplica a toda la vista del componente */
@@ -17,6 +18,9 @@
     min-height: 100vh;
     padding: 20px;
     color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 /* Header completo */
@@ -24,41 +28,49 @@
     padding-bottom: 2rem;
 }
 
-/* Parte superior con el ícono de volver, deporte y chat */
 .containerName {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 10px 15px;
+    padding: 15px;
     gap: 10px;
-    /* Espacio entre ítems */
-    font-size: 3rem;
-    font-weight: 900;
+    font-size: 2.5rem;
+    font-weight: 700;
 }
 
 .iconoVolver,
 .chatIconContainer {
     flex: 0 0 auto;
-    /* No crecen, no se encogen */
 }
 
 .iconoVolver {
-    font-size: 4rem;
+    font-size: 3rem;
     color: var(--color-secondary);
     cursor: pointer;
-    min-width: 40px;
+    transition: transform 0.3s ease;
+}
+
+.iconoVolver:hover {
+    transform: scale(1.1);
 }
 
 .chatIconContainer img {
     width: 5rem;
     height: 5rem;
-    min-width: 5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    object-fit: contain; /* 👈 Esto asegura que la imagen se vea completa */
+}
+
+
+.chatIconContainer img:hover {
+    transform: scale(1.05);
 }
 
 #deporte-seleccionado {
     flex: 1;
-    /* Ocupa el espacio disponible */
     text-align: center;
     font-size: 2.5rem;
     font-weight: 900;
@@ -74,17 +86,20 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 5px;
-    padding: 10px 0;
-    font-size: 2rem;
+    gap: 10px;
+    padding: 15px 0;
+    font-size: 2.2rem;
     color: var(--color-white);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .participantes {
     text-align: center;
-    font-size: 2.3rem;
-    font-weight: 600;
-    margin-top: 10px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-top: 15px;
 }
 
 #participantes-actual {
@@ -99,31 +114,37 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    margin-top: 40px;
+    gap: 20px;
+    margin-top: 30px;
 }
 
 .main a {
     width: 100%;
     max-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }
 
 .main button {
     width: 100%;
     height: 6rem;
-    padding: 12px;
-    font-size: 1.8rem;
+    padding: 14px;
+    font-size: 1.9rem;
     font-weight: 600;
     background-color: var(--color-orange);
     color: var(--color-white);
-    border-radius: 10px;
+    border-radius: 12px;
     border: none;
     cursor: pointer;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .main button:hover {
     background-color: var(--color-hover);
+    transform: scale(1.05);
 }
 
 .footer {
@@ -132,8 +153,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 15px;
-    gap: 10px;
+    padding: 20px;
+    gap: 15px;
     margin-top: 4rem;
 }
 
@@ -151,10 +172,12 @@
     font-size: 1.9rem;
     border-radius: 13px;
     border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .footer button:hover {
     background-color: var(--color-hover);
+    transform: scale(1.05);
 }
 
 .footer p {

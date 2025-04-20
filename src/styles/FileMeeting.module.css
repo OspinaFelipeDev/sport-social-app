@@ -37,6 +37,11 @@
     font-size: 3rem;
     color: var(--color-secondary);
     cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.iconoVolver:hover {
+    transform: scale(1.1);
 }
 
 #deporte-seleccionado {
@@ -47,8 +52,16 @@
 }
 
 .chatIconContainer img {
-    width: 35px;
-    height: 35px;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    object-fit: contain; /* 👈 Esto asegura que la imagen se vea completa */
+}
+
+.chatIconContainer img:hover {
+    transform: scale(1.05);
 }
 
 .main {

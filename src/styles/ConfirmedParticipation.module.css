@@ -1,43 +1,51 @@
 :root {
-    --color-gray: #969BAB;
-    --color-secondary: #18191F;
-    --color-accent: #e74c3c;
-    --color-white: white;
-    --color-blue: #1947E5;
-    --color-blue-light: #2CC8F9;
-    --color-blue-join: #D6FCF7;
-    --color-orange: #F95A2C;
-    --color-pink: #FF89BB;
-    --color-hover: #a2203d;
-  }
+  --color-gray: #969BAB;
+  --color-secondary: #18191F;
+  --color-accent: #e74c3c;
+  --color-white: white;
+  --color-blue: #1947E5;
+  --color-blue-light: #2CC8F9;
+  --color-blue-join: #D6FCF7;
+  --color-orange: #F95A2C;
+  --color-pink: #FF89BB;
+  --color-hover: #a2203d;
+}
   
-  .wrapper {
-    padding: 1rem;
-    background: var(--color-blue-join);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+.wrapper {
+  padding: 2rem;
+  background: var(--color-blue-join);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
   
   
-  .header {
-    text-align: center;
-  }
+.header {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 2rem;
+}
   
-  .containerName {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto 2rem;
-    padding: 10px 15px;
-  }
+.containerName {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 1rem;
+  border-radius: 12px;
+}
   
-  .iconoVolver {
-    font-size: 3.5rem;
-    color: var(--color-secondary);
-  }
+.iconoVolver {
+  font-size: 3rem;
+  color: var(--color-secondary);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.iconoVolver:hover {
+  transform: scale(1.1);
+}
   
   .titulo {
     font-size: 3rem;
@@ -47,19 +55,30 @@
   }
   
   .chatIconContainer img {
-    width: 4rem;
-    height: auto;
-  }
+    width: 5rem;
+    height: 5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    object-fit: contain; /* 👈 Esto asegura que la imagen se vea completa */
+}
+
+.chatIconContainer img:hover {
+    transform: scale(1.05);
+}
   
   .main {
     text-align: center;
     padding: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
   }
-  
+
   .main p {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 500;
-    color: #000000;
+    color: #000;
     margin: 1rem auto;
     max-width: 90%;
   }
@@ -69,26 +88,32 @@
     color: var(--color-secondary);
   }
   
+  /* Card */
   .playerCard {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: var(--color-blue-light);
-    border-radius: 12px;
-    padding: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
     width: 100%;
-    height: 11rem;
     max-width: 600px;
-    margin: 4rem auto;
+    margin: 3rem auto;
+    transition: transform 0.2s ease;
+  }
+  
+  .playerCard:hover {
+    transform: translateY(-4px);
   }
   
   .playerPhoto {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
+    border: 3px solid var(--color-white);
   }
   
   .playerPhoto img {
@@ -99,63 +124,74 @@
   
   .playerInfo {
     flex: 2;
-    padding: 0 1rem;
+    padding: 0 1.2rem;
+    text-align: left;
   }
   
   .playerName {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: bold;
     margin: 0;
+    color: var(--color-secondary);
   }
   
   .teamName {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: #666;
-    margin: 0.3rem 0 0;
+    margin-top: 0.3rem;
   }
   
   .playerPosition {
     flex: 1;
     text-align: center;
     font-weight: bold;
-    color: #333;
+    color: var(--color-gray);
+    word-wrap: break-word; /* 👈 fuerza saltos en palabras largas */
+    overflow-wrap: break-word;
+    word-break: break-word;
+    padding: 0 0.5rem; /* 👈 da algo de espacio a los lados */
   }
   
   .playerPosition span {
-    color: #000000;
-    font-weight: bold;
-    font-size: 1.2rem;
+    color: var(--color-secondary);
+    font-size: 1.4rem;
+    display: block; /* 👈 asegura salto si es necesario */
   }
   
+  
+  /* Footer */
   .footer {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 1rem;
-    font-size: 0.9rem;
+    padding: 2rem 1rem 1rem;
   }
   
   .button {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--color-blue);
+    color: var(--color-white);
     border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 5px;
+    padding: 1rem 2rem;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 2rem;
-    transition: background 0.3s;
-    margin-bottom: 3rem;
+    font-size: 1.8rem;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-bottom: 2rem;
   }
   
   .button:hover {
     background-color: var(--color-blue-light);
+    transform: scale(1.05);
   }
   
   .footer p {
-    margin-top: 0.5rem;
+    margin-top: 1rem;
     color: var(--color-accent);
-    max-width: 80%;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
+    max-width: 90%;
+    line-height: 1.4;
   }
+
+
   

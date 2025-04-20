@@ -1,11 +1,11 @@
 :root {
-    --color-gray: #969BAB;
-    --color-secondary: #18191F;
-    --color-accent: #e74c3c;
-    --color-white: white;
+    --color-gray: #B0B4C1;
+    --color-secondary: #1F2028;
+    --color-accent: #E74C3C;
+    --color-white: #ffffff;
     --color-blue: #1947E5;
-    --color-blue-light: #2CC8F9;
-    --color-blue-join: #D6FCF7;
+    --color-blue-light: #3A8DFF;
+    --color-blue-join: #E6F7FB;
     --color-orange: #F95A2C;
     --color-pink: #FF89BB;
     --color-hover: #a2203d;
@@ -20,14 +20,13 @@
 }
 
 .header {
-    padding: 10px;
+    padding: 15px;
 }
 
 .containerName {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
     max-width: 600px;
     margin: 0 auto;
     padding: 10px 15px;
@@ -35,8 +34,14 @@
 }
 
 .iconoVolver {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: var(--color-secondary);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.iconoVolver:hover {
+    transform: scale(1.1);
 }
 
 .titulo {
@@ -47,8 +52,16 @@
 }
 
 .chatIconContainer img {
-    width: 35px;
-    height: auto;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    object-fit: contain; /* 👈 Esto asegura que la imagen se vea completa */
+}
+
+.chatIconContainer img:hover {
+    transform: scale(1.05);
 }
 
 .choosePositionMain {
@@ -80,33 +93,38 @@
     font-weight: 700;
     transform: translate(-50%, -50%);
     cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.player:hover {
+    transform: translate(-50%, -50%) scale(1.05);
 }
 
 .blue span {
-    color: blue;
+    color: #2563EB;
 }
 
 .red span {
-    color: red;
+    color: #DC2626;
 }
 
 .dropdownBtn {
-    background: none;
+    background: transparent;
     border: none;
     cursor: pointer;
     font-size: 14px;
-    color: white;
+    color: var(--color-secondary);
     padding: 5px;
 }
 
 .dropdownMenu {
     margin-top: 8px;
-    background-color: white;
-    border: 1px solid #ccc;
+    background-color: var(--color-white);
+    border: 1px solid #ddd;
     padding: 6px 10px;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 0.9rem;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .dropdownContent {
@@ -115,14 +133,15 @@
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: var(--color-white);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     list-style: none;
-    padding: 5px 0;
+    padding: 6px 0;
     margin: 0;
     z-index: 10;
+    border-radius: 6px;
     width: max-content;
-    min-width: 100px;
+    min-width: 120px;
 }
 
 .dropdownContent li {
@@ -130,127 +149,42 @@
     cursor: pointer;
     font-size: 0.9rem;
     text-align: center;
+    transition: background-color 0.3s;
 }
 
 .dropdownContent li:hover {
-    background-color: #ddd;
+    background-color: var(--color-blue-join);
 }
 
 .player:hover .dropdownContent {
     display: block;
 }
 
-/* Posiciones adaptadas para azul */
-.bluePosition1 {
-    top: 16%;
-    left: 50%;
-}
+/* Posiciones azul */
+.bluePosition1 { top: 16%; left: 50%; }
+.bluePosition2 { top: 23%; left: 30%; }
+.bluePosition3 { top: 23%; left: 70%; }
+.bluePosition4 { top: 23%; left: 11%; }
+.bluePosition5 { top: 23%; left: 88%; }
+.bluePosition6 { top: 31%; left: 21%; }
+.bluePosition7 { top: 31%; left: 50%; }
+.bluePosition8 { top: 31%; left: 81%; }
+.bluePosition9 { top: 42%; left: 25%; }
+.bluePosition10 { top: 42%; left: 50%; }
+.bluePosition11 { top: 42%; left: 75%; }
 
-.bluePosition2 {
-    top: 23%;
-    left: 30%;
-}
-
-.bluePosition3 {
-    top: 23%;
-    left: 70%;
-}
-
-.bluePosition4 {
-    top: 23%;
-    left: 11%;
-}
-
-.bluePosition5 {
-    top: 23%;
-    left: 88%;
-}
-
-.bluePosition6 {
-    top: 31%;
-    left: 21%;
-}
-
-.bluePosition7 {
-    top: 31%;
-    left: 50%;
-}
-
-.bluePosition8 {
-    top: 31%;
-    left: 81%;
-}
-
-.bluePosition9 {
-    top: 42%;
-    left: 25%;
-}
-
-.bluePosition10 {
-    top: 42%;
-    left: 50%;
-}
-
-.bluePosition11 {
-    top: 42%;
-    left: 75%;
-}
-
-/* Posiciones adaptadas para rojo */
-.redPosition1 {
-    top: 84%;
-    left: 50%;
-}
-
-.redPosition2 {
-    top: 77%;
-    left: 30%;
-}
-
-.redPosition3 {
-    top: 77%;
-    left: 70%;
-}
-
-.redPosition4 {
-    top: 77%;
-    left: 11%;
-}
-
-.redPosition5 {
-    top: 77%;
-    left: 88%;
-}
-
-.redPosition6 {
-    top: 70%;
-    left: 25%;
-}
-
-.redPosition7 {
-    top: 70%;
-    left: 50%;
-}
-
-.redPosition8 {
-    top: 70%;
-    left: 75%;
-}
-
-.redPosition9 {
-    top: 58%;
-    left: 25%;
-}
-
-.redPosition10 {
-    top: 58%;
-    left: 50%;
-}
-
-.redPosition11 {
-    top: 58%;
-    left: 75%;
-}
+/* Posiciones rojo */
+.redPosition1 { top: 84%; left: 50%; }
+.redPosition2 { top: 77%; left: 30%; }
+.redPosition3 { top: 77%; left: 70%; }
+.redPosition4 { top: 77%; left: 11%; }
+.redPosition5 { top: 77%; left: 88%; }
+.redPosition6 { top: 70%; left: 25%; }
+.redPosition7 { top: 70%; left: 50%; }
+.redPosition8 { top: 70%; left: 75%; }
+.redPosition9 { top: 58%; left: 25%; }
+.redPosition10 { top: 58%; left: 50%; }
+.redPosition11 { top: 58%; left: 75%; }
 
 .footer {
     display: flex;
@@ -267,16 +201,19 @@
     height: 5rem;
     font-weight: 600;
     font-size: 2.3rem;
-    border-radius: 13px;
+    border-radius: 15px;
     border: none;
     margin: 22px auto 10px auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .confirmBtn:hover {
     background-color: var(--color-blue);
+    transform: translateY(-2px);
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -284,138 +221,44 @@
         background-size: 89% 90%;
     }
 
-    .bluePosition1 {
-        top: 17.5%;
-        left: 50%;
-    }
-
-    .redPosition1 {
-        top: 83%;
-        left: 50%;
-    }
+    .bluePosition1 { top: 17.5%; left: 50%; }
+    .redPosition1 { top: 83%; left: 50%; }
 }
 
 @media (min-width: 1024px) {
-
     .containerName {
-        margin-bottom: 0rem;
+        margin-bottom: 0;
     }
 
     .choosePositionMain {
         background-size: 50% 98%;
     }
 
-    /* Posiciones adaptadas para azul */
-.bluePosition1 {
-    top: 19%;
-    left: 50%;
-}
+    /* Posiciones azul */
+    .bluePosition1 { top: 19%; left: 50%; }
+    .bluePosition2 { top: 25%; left: 32%; }
+    .bluePosition3 { top: 25%; left: 68%; }
+    .bluePosition4 { top: 25%; left: 16%; }
+    .bluePosition5 { top: 25%; left: 84%; }
+    .bluePosition6 { top: 32%; left: 24%; }
+    .bluePosition7 { top: 32%; left: 50%; }
+    .bluePosition8 { top: 32%; left: 77%; }
+    .bluePosition9 { top: 47%; left: 24%; }
+    .bluePosition10 { top: 42%; left: 50%; }
+    .bluePosition11 { top: 47%; left: 77%; }
 
-.bluePosition2 {
-    top: 25%;
-    left: 32%;
-}
-
-.bluePosition3 {
-    top: 25%;
-    left: 68%;
-}
-
-.bluePosition4 {
-    top: 25%;
-    left: 16%;
-}
-
-.bluePosition5 {
-    top: 25%;
-    left: 84%;
-}
-
-.bluePosition6 {
-    top: 32%;
-    left: 24%;
-}
-
-.bluePosition7 {
-    top: 32%;
-    left: 50%;
-}
-
-.bluePosition8 {
-    top: 32%;
-    left: 77%;
-}
-
-.bluePosition9 {
-    top: 47%;
-    left: 24%;
-}
-
-.bluePosition10 {
-    top: 42%;
-    left: 50%;
-}
-
-.bluePosition11 {
-    top: 47%;
-    left: 77%;
-}
-
-/* Posiciones adaptadas para rojo */
-.redPosition1 {
-    top: 81%;
-    left: 50%;
-}
-
-.redPosition2 {
-    top: 75%;
-    left: 32%;
-}
-
-.redPosition3 {
-    top: 75%;
-    left: 68%;
-}
-
-.redPosition4 {
-    top: 75%;
-    left: 16%;
-}
-
-.redPosition5 {
-    top: 75%;
-    left: 84%;
-}
-
-.redPosition6 {
-    top: 68%;
-    left: 24%;
-}
-
-.redPosition7 {
-    top: 68%;
-    left: 50%;
-}
-
-.redPosition8 {
-    top: 68%;
-    left: 77%;
-}
-
-.redPosition9 {
-    top: 53%;
-    left: 24%;
-}
-
-.redPosition10 {
-    top: 58%;
-    left: 50%;
-}
-
-.redPosition11 {
-    top: 53%;
-    left: 77%;
-}
+    /* Posiciones rojo */
+    .redPosition1 { top: 81%; left: 50%; }
+    .redPosition2 { top: 75%; left: 32%; }
+    .redPosition3 { top: 75%; left: 68%; }
+    .redPosition4 { top: 75%; left: 16%; }
+    .redPosition5 { top: 75%; left: 84%; }
+    .redPosition6 { top: 68%; left: 24%; }
+    .redPosition7 { top: 68%; left: 50%; }
+    .redPosition8 { top: 68%; left: 77%; }
+    .redPosition9 { top: 53%; left: 24%; }
+    .redPosition10 { top: 58%; left: 50%; }
+    .redPosition11 { top: 53%; left: 77%; }
 
     .confirmBtn {
         margin: 0.2rem auto 10px auto;

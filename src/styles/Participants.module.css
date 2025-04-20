@@ -2,7 +2,7 @@
     --color-gray: #969BAB;
     --color-secondary: #18191F;
     --color-accent: #e74c3c;
-    --color-white: white;
+    --color-white: #ffffff;
     --color-blue: #1947E5;
     --color-blue-light: #2CC8F9;
     --color-blue-join: #D6FCF7;
@@ -15,10 +15,16 @@
 .participantsWrapper {
     background-color: var(--color-pink);
     min-height: 100vh;
+    padding-bottom: 2rem;
 }
 
 .header {
     width: 100%;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin-bottom: 2rem;
 }
 
 .containerName {
@@ -26,85 +32,105 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 10px 15px;
-    margin-bottom: 2rem;
+    padding: 0 1.5rem;
 }
 
 .iconoVolver {
     font-size: 3rem;
     color: var(--color-secondary);
     cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.iconoVolver:hover {
+    transform: scale(1.1);
 }
 
 .title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 600;
+    color: var(--color-secondary);
+    margin: 0 auto;
     text-align: center;
     flex-grow: 1;
-    margin: 0;
 }
 
 .chatIconContainer img {
-    width: 35px;
-    height: 35px;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    object-fit: contain; /* 👈 Esto asegura que la imagen se vea completa */
 }
 
-/* Asegurarse de que los estilos solo afecten a este componente */
+.chatIconContainer img:hover {
+    transform: scale(1.05);
+}
+
 .participantsMain {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1rem;
+    gap: 2rem;
+    padding: 2rem 1rem;
     justify-items: center;
 }
 
 .participantCard {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
     background-color: var(--color-back);
-    border-radius: 10px;
-    border: 2px solid var(--color-secondary);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    max-width: 350px;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    padding: 1.2rem 1.5rem;
+    max-width: 400px;
     width: 100%;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.participantCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
 }
 
 .participantAvatar {
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--color-pink);
+    border: 3px solid var(--color-white);
 }
 
 .participantInfo {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .participantName {
-    font-size: 1.7rem;
-    font-weight: bold;
+    font-size: 1.8rem;
+    font-weight: 700;
     color: var(--color-secondary);
+    margin-bottom: 0.3rem;
 }
 
 .participantNumber {
-    font-size: 1.5rem;
-    color: var(--color-white);
+    font-size: 1.4rem;
+    color: var(--color-gray);
 }
 
-/* Para pantallas de tablet (2 fichas por fila) */
+/* Tablet */
 @media (min-width: 768px) and (max-width: 1023px) {
     .participantsMain {
-        grid-template-columns: repeat(2, 1fr); /* 2 fichas por fila */
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* Para pantallas de escritorio (3 fichas por fila) */
+/* Desktop */
 @media (min-width: 1024px) {
     .participantsMain {
-        grid-template-columns: repeat(3, 1fr); /* 3 fichas por fila */
+        grid-template-columns: repeat(3, 1fr);
     }
 }

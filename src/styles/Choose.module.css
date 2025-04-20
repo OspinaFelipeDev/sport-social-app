@@ -8,66 +8,72 @@
     --color-blue-join: #D6FCF7;
     --color-orange: #F95A2C;
     --color-pink: #FF89BB;
-  
+
     --radius: 1.2rem;
     --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
-  }
+}
 
-  .chooseContainer {
+.chooseContainer {
     background: #f9f9f9;
-    min-height: 100vh; /* Asegura que ocupa toda la pantalla */
+    min-height: 100vh;
+    /* Asegura que ocupa toda la pantalla */
     display: flex;
     flex-direction: column;
-  }
-  
-  
-  /* HEADER */
-  .chooseContainer .header {
+}
+
+
+/* HEADER */
+.chooseContainer .header {
     padding: 2rem;
-  }
-  
-  .chooseContainer .containerHeader {
+}
+
+.chooseContainer .containerHeader {
     display: flex;
     align-items: center;
     position: relative;
-  }
-  
-  .chooseContainer .iconoVolver {
+}
+
+.chooseContainer .iconoVolver {
     font-size: 3.2rem;
     color: var(--color-secondary);
     margin-left: 1rem;
     cursor: pointer;
     transition: var(--transition);
-  }
-  .chooseContainer .iconoVolver:hover {
+}
+
+.chooseContainer .iconoVolver:hover {
     color: var(--color-accent);
-  }
-  
-  .chooseContainer h1 {
+}
+
+.chooseContainer h1 {
     font-size: 2.6rem;
     color: var(--color-secondary);
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     font-weight: bold;
-  }
+}
 
 
-  
-  
-  /* MAIN */
-  .chooseContainer .main {
+
+
+/* MAIN */
+.chooseContainer .main {
     padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-  }
-  
-  /* TARJETAS */
-  .chooseContainer .containerCreate,
-  .chooseContainer .containerJoin {
+}
+
+.linkContainer {
+    text-decoration: none;
+}
+
+/* TARJETAS */
+.chooseContainer .containerCreate,
+.chooseContainer .containerJoin {
     background-color: var(--color-white);
     padding: 2rem;
     border-radius: var(--radius);
@@ -78,125 +84,126 @@
     max-width: 100%;
     transition: var(--transition);
     border-radius: 10px 60px 30px;
-  }
-  
-  .chooseContainer .containerCreate {
+}
+
+.chooseContainer .containerCreate {
     background: linear-gradient(135deg, var(--color-pink), #ffb0c9);
-  }
-  .chooseContainer .containerJoin {
+}
+
+.chooseContainer .containerJoin {
     background: linear-gradient(135deg, var(--color-blue-join), #c0f3ef);
-  }
-  
-  .chooseContainer .containerCreate:hover,
-  .chooseContainer .containerJoin:hover {
+}
+
+.chooseContainer .containerCreate:hover,
+.chooseContainer .containerJoin:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-  }
-  
-  .chooseContainer .containerCreate h2,
-  .chooseContainer .containerJoin h2 {
+}
+
+.chooseContainer .containerCreate h2,
+.chooseContainer .containerJoin h2 {
     font-size: 2.2rem;
     color: var(--color-secondary);
     margin-bottom: 1rem;
-  }
-  
-  .chooseContainer .containerCreate p,
-  .chooseContainer .containerJoin p {
+}
+
+.chooseContainer .containerCreate p,
+.chooseContainer .containerJoin p {
     font-size: 1.6rem;
     color: var(--color-secondary);
     margin-bottom: 1.5rem;
     text-align: justify;
     max-width: 90%;
     margin-inline: auto;
-  }
-  
-  /* IMÁGENES */
-  .chooseContainer .imageContainer {
+}
+
+/* IMÁGENES */
+.chooseContainer .imageContainer {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
     width: 100%;
     padding-top: 1rem;
-  }
-  
-  .chooseContainer .imageContainer img {
+}
+
+.chooseContainer .imageContainer img {
     max-width: 60%;
     height: auto;
     display: block;
     border-radius: 0.6rem;
-  }
-  
-  /* ICONOS */
-  .chooseContainer .iconoGo {
+}
+
+/* ICONOS */
+.chooseContainer .iconoGo {
     font-size: 3rem;
     color: var(--color-blue-light);
     margin-top: 5rem;
     margin-left: 1rem;
     transition: var(--transition);
     cursor: pointer;
-  }
-  .chooseContainer .iconoGo:hover {
+}
+
+.chooseContainer .iconoGo:hover {
     color: var(--color-blue);
-  }
-  
-  @media (min-width: 768px) and (max-width: 1023px) {
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
     .chooseContainer .main {
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
     }
-  
+
     .chooseContainer .containerCreate,
     .chooseContainer .containerJoin {
-      max-width: 500px;
-      padding: 1.5rem;
+        max-width: 500px;
+        padding: 1.5rem;
     }
-  
+
     .chooseContainer .containerCreate h2,
     .chooseContainer .containerJoin h2 {
-      font-size: 2rem;
+        font-size: 2rem;
     }
-  
+
     .chooseContainer .containerCreate p,
     .chooseContainer .containerJoin p {
-      font-size: 1.4rem;
+        font-size: 1.4rem;
     }
-  
+
     .chooseContainer .iconoGo {
-      font-size: 2.5rem;
-      margin-top: 3rem;
+        font-size: 2.5rem;
+        margin-top: 3rem;
     }
-  }
-  
-  @media (min-width: 1024px) {
+}
+
+@media (min-width: 1024px) {
     .chooseContainer .main {
-      flex-direction: row;
-      justify-content: center;
-      gap: 3rem;
-      align-items: stretch;
+        flex-direction: row;
+        justify-content: center;
+        gap: 3rem;
+        align-items: stretch;
     }
-  
+
     .chooseContainer .containerCreate,
     .chooseContainer .containerJoin {
-      max-width: 450px;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+        max-width: 450px;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
-  
+
     .chooseContainer h1 {
-      font-size: 3rem;
+        font-size: 3rem;
     }
-  
+
     .chooseContainer .iconoGo {
-      font-size: 2.8rem;
-      margin-top: auto;
+        font-size: 2.8rem;
+        margin-top: auto;
     }
-  
+
     .chooseContainer .imageContainer img {
-      max-width: 80%;
+        max-width: 80%;
     }
-  }
-  
+}
