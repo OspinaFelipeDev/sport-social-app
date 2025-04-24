@@ -7,6 +7,7 @@
     --color-blue-light: #2CC8F9;
     --color-orange: #F95A2C;
     --color-light-gray: #F4F4F6;
+    --color-background: #f0f4ff;
 }
 
 /* 🌟 Mobile First */
@@ -16,7 +17,7 @@
     align-items: center;
     text-align: center;
     min-height: 100vh;
-    background-color: var(--color-light-gray);
+    background-color: var(--color-background);
     padding: 2rem;
 }
 

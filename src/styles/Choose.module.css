@@ -8,14 +8,14 @@
     --color-blue-join: #D6FCF7;
     --color-orange: #F95A2C;
     --color-pink: #FF89BB;
-
     --radius: 1.2rem;
     --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
+    --color-background: #f0f4ff;
 }
 
 .chooseContainer {
-    background: #f9f9f9;
+    background: var(--color-background);
     min-height: 100vh;
     /* Asegura que ocupa toda la pantalla */
     display: flex;

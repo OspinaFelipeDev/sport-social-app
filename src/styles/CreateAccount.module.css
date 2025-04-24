@@ -9,6 +9,7 @@
     --color-orange: #F95A2C;
     --color-pink: #FF89BB;
     --color-yellow: #FFBD12;
+    --color-background: #f0f4ff;
 }
 
 .createAccount {
@@ -16,7 +17,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color:  #f9f9f9;
+    background-color:  var(--color-background);
 }
 
 /* HEADER */
