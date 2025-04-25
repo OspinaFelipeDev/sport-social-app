@@ -93,13 +93,14 @@ La Licencia MIT es una licencia permisiva, lo que significa que se puede utiliza
 **Andrés Felipe Cubillos Ospina**  
 Desarrollador Front-End
 
-![Logo del desarrollador](./src/assets/new-logo.png)
+<img src="./src/assets/new-logo.png" alt="Logo del desarrollador" width="150"/>
 
 Puedes encontrarme en:
 
 - GitHub: [@OspinaFelipeDev](https://github.com/OspinaFelipeDev)
 - LinkedIn: [Perfil-linkedin](https://www.linkedin.com/in/andr%C3%A9s-felipe-cubillos-ospina-9619962a3/)
 - Email: OspinaFelipeDev@gmail.com
+
 
 
 
