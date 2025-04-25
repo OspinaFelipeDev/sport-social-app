@@ -1,3 +1,10 @@
+# 🏅 SportSocial
+
+_Reúne. Juega. Conecta._
+
+**SportSocial** es una aplicación diseñada para ayudar a las personas a organizar encuentros deportivos, elegir horarios, posiciones, equipos y tareas durante la práctica. ¡Todo desde una sola plataforma!
+
+
 ## ✅ Requisitos mínimos para la instalación
 
 Para ejecutar este proyecto localmente, asegúrate de cumplir con los siguientes requisitos:
@@ -91,7 +98,7 @@ Desarrollador Front-End
 Puedes encontrarme en:
 
 - GitHub: [@OspinaFelipeDev](https://github.com/OspinaFelipeDev)
-- LinkedIn: [linkedin.com/in/tu-perfil](https://www.linkedin.com/in/andr%C3%A9s-felipe-cubillos-ospina-9619962a3/)
+- LinkedIn: [Perfil-linkedin](https://www.linkedin.com/in/andr%C3%A9s-felipe-cubillos-ospina-9619962a3/)
 - Email: OspinaFelipeDev@gmail.com
 
 
