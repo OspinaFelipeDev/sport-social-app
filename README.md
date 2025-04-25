@@ -81,4 +81,18 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](./LICENS
 
 La Licencia MIT es una licencia permisiva, lo que significa que se puede utilizar, copiar, modificar, fusionar, publicar, distribuir, sublicenciar y/o vender copias del software, siempre que se incluya la siguiente declaración de copyright y la licencia en todas las copias del software.
 
+## 👨‍💻 Desarrollado por
+
+**Andrés Felipe Cubillos Ospina**  
+Desarrollador Front-End
+
+![Logo del desarrollador](./src/assets/new-logo.png)
+
+Puedes encontrarme en:
+
+- GitHub: [@OspinaFelipeDev](https://github.com/OspinaFelipeDev)
+- LinkedIn: [linkedin.com/in/tu-perfil](https://www.linkedin.com/in/andr%C3%A9s-felipe-cubillos-ospina-9619962a3/)
+- Email: OspinaFelipeDev@gmail.com
+
+
 
