@@ -1,12 +1,79 @@
-# React + Vite
+## ✅ Requisitos mínimos para la instalación
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Para ejecutar este proyecto localmente, asegúrate de cumplir con los siguientes requisitos:
 
-Currently, two official plugins are available:
+### 🖥️ Sistema operativo
+- Windows 10/11, macOS o una distribución de Linux moderna.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### ⚙️ Entorno de desarrollo
+- Node.js v18 o superior  
+- npm v9 o superior (instalado junto con Node.js)  
+- Editor de código recomendado: [Visual Studio Code](https://code.visualstudio.com/)
 
-## Expanding the ESLint configuration
+### 📦 Dependencias clave
+- React 19  
+- React Router DOM 7  
+- Vite 6 (para desarrollo y build)  
+- gh-pages (para despliegue en GitHub Pages)  
+- Firebase (para la conexión con la base de datos en la nube)
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## 🚀 Paso a paso para la instalación
+
+Sigue estos pasos para clonar e instalar el proyecto localmente:
+
+### 1. Clona el repositorio
+
+```bash
+git clone https://github.com/tu-usuario/sport-social-app.git
+
+### 2. Accede al directorio del proyecto
+
+```bash
+cd sport-social-app
+
+### 3. Instala las dependencias
+
+```bash
+npm install
+
+### 4. Ejecuta el entorno de desarrollo
+
+```bash
+npm run dev
+
+
+## 🔥 Configuración de Firebase
+
+Sigue estos pasos para conectar Firebase a tu aplicación después de clonar el repositorio:
+
+### 1. Crear un Proyecto en Firebase
+
+1. Dirígete a [Firebase Console](https://console.firebase.google.com/).
+2. Haz clic en **Agregar proyecto** y sigue los pasos para crear un nuevo proyecto en Firebase.
+3. Una vez creado el proyecto, serás redirigido a la página de configuración del proyecto.
+
+### 2. Crear una Aplicación Web en Firebase
+
+1. En la consola de Firebase, en la sección **Tus apps**, selecciona la opción de **Web**.
+2. Registra tu aplicación con un nombre y haz clic en **Registrar app**.
+3. Firebase te dará un código de configuración que necesitarás en el siguiente paso.
+
+### 3. Instalar Firebase en tu Proyecto
+
+1. Abre una terminal en el directorio raíz de tu proyecto.
+2. Ejecuta el siguiente comando para instalar Firebase como una dependencia:
+
+   ```bash
+   npm install firebase
+
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](./LICENSE) para más detalles.
+
+### Licencia MIT
+
+La Licencia MIT es una licencia permisiva, lo que significa que se puede utilizar, copiar, modificar, fusionar, publicar, distribuir, sublicenciar y/o vender copias del software, siempre que se incluya la siguiente declaración de copyright y la licencia en todas las copias del software.
+
+
