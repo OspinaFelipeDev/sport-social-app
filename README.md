@@ -26,21 +26,25 @@ Sigue estos pasos para clonar e instalar el proyecto localmente:
 
 ```bash
 git clone https://github.com/tu-usuario/sport-social-app.git
+```
 
 ### 2. Accede al directorio del proyecto
 
 ```bash
 cd sport-social-app
+```
 
 ### 3. Instala las dependencias
 
 ```bash
 npm install
+```
 
 ### 4. Ejecuta el entorno de desarrollo
 
 ```bash
 npm run dev
+```
 
 
 ## 🔥 Configuración de Firebase
@@ -66,6 +70,7 @@ Sigue estos pasos para conectar Firebase a tu aplicación después de clonar el 
 
    ```bash
    npm install firebase
+   ```
 
 
 ## 📝 Licencia
