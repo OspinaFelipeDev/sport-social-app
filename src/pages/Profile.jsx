@@ -1,40 +1,85 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/Profile.module.css";
-import profileImage from "../assets/pro.png"; // Imagen de perfil
+import profileImagePlaceholder from "../assets/pro.png"; // Imagen por defecto
+import { auth, db } from "../../src/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 function Profile() {
   const navigate = useNavigate();
+  const [userData, setUserData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const user = auth.currentUser;
+      if (!user) {
+        navigate("/login");
+        return;
+      }
+
+      try {
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          setUserData(docSnap.data());
+        } else {
+          console.warn("No se encontraron datos del usuario");
+        }
+      } catch (error) {
+        console.error("Error al obtener datos del usuario:", error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, [navigate]);
+
+  if (isLoading) {
+    return <p className={styles.loading}>Cargando perfil...</p>;
+  }
+
+  if (!userData) {
+    return <p className={styles.error}>No se encontraron datos del perfil.</p>;
+  }
 
   return (
     <div className={styles.profileContainer}>
-      {/* 📌 Sección superior con imagen de perfil e iconos */}
       <div className={styles.profileHeader}>
-        {/* Icono de salir (izquierda, arriba de la imagen) */}
-        <i className={`fa-solid fa-right-from-bracket ${styles.iconoSalida}`}
-        onClick={() => navigate("/login")}
+        <i
+          className={`fa-solid fa-right-from-bracket ${styles.iconoSalida}`}
+          onClick={() => navigate("/login")}
         ></i>
 
-        <img src={profileImage} alt="Foto de perfil" className={styles.profileImage} />
+        <img
+          src={userData.fotoPerfil || profileImagePlaceholder}
+          alt="Foto de perfil"
+          className={styles.profileImage}
+        />
 
-        {/* Icono de editar perfil (derecha, arriba de la imagen) */}
-        <i className={`fa-solid fa-user-pen ${styles.iconoEditar}`} 
-           onClick={() => navigate("/completeProfile")}></i>
+        <i
+          className={`fa-solid fa-user-pen ${styles.iconoEditar}`}
+          onClick={() => navigate("/completeProfile")}
+        ></i>
       </div>
 
-      {/* 📌 Sección inferior con la información del usuario */}
       <div className={styles.profileDetails}>
         <div className={styles.nameAge}>
-          <h1>Misa Amane</h1>
-          <span className={styles.age}>25</span>
+          <h1>{userData.name || "Sin nombre"}</h1>
+          <span className={styles.age}>{userData.edad}</span>
         </div>
         <p className={styles.description}>
-          Apasionada por el fútbol y el baloncesto. Me encanta compartir buenos momentos y practicar deportes en equipo.
+          {userData.descripcion || "Sin descripción"}
         </p>
         <div className={styles.sports}>
-          <p>Fútbol, Baloncesto</p>
+          <p>{userData.deportes || "Sin deportes especificados"}</p>
         </div>
-        <button className={styles.eventsButton} onClick={() => navigate("/choose")}>
+        <button
+          className={styles.eventsButton}
+          onClick={() => navigate("/choose")}
+        >
           Eventos para hoy
         </button>
       </div>

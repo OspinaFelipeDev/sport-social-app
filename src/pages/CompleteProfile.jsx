@@ -1,18 +1,55 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/CompleteProfile.module.css";
+import { auth, db } from "../../src/firebase"; // Ajusta si la ruta cambia
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const CompleteProfile = () => {
+  const [nombre, setNombre] = useState("");
   const fileInputRef = useRef(null);
   const navigate = useNavigate();
+
+  // Obtener nombre del usuario desde Firestore
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const user = auth.currentUser;
+      if (user) {
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setNombre(docSnap.data().name || "");
+        }
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   const handleImageClick = () => {
     fileInputRef.current.click();
   };
 
-  const handleSave = () => {
-    // Aquí podrías validar y guardar los datos si quieres
-    navigate("/profile"); // Navega al componente Profile
+  const handleSave = async () => {
+    const user = auth.currentUser;
+
+    if (!user) {
+      console.error("Usuario no autenticado.");
+      return;
+    }
+
+    const profileData = {
+      residencia: document.getElementById("residencia").value,
+      deportes: document.getElementById("deportes").value,
+      edad: document.getElementById("edad").value,
+      descripcion: document.getElementById("descripcion").value,
+    };
+
+    try {
+      await setDoc(doc(db, "users", user.uid), profileData, { merge: true });
+      navigate("/profile");
+    } catch (error) {
+      console.error("Error al guardar perfil:", error.message);
+    }
   };
 
   return (
@@ -38,11 +75,11 @@ const CompleteProfile = () => {
           />
         </div>
 
-        <h2 className={styles.subtitle}>Subir foto de perfil</h2>
+        <h2 className={styles.subtitle}>¡Hola, {nombre}!</h2>
+        <p className={styles.subtitle}>Sube tu foto de perfil y completa tus datos</p>
       </header>
 
       <main className={styles.main}>
-        {/* Inputs */}
         <div className={styles.inputBox}>
           <i className="fas fa-map-marker-alt"></i>
           <input
