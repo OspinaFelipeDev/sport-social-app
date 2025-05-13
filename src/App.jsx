@@ -19,7 +19,6 @@ import ChoosePosition from "./pages/ChoosePosition";
 import ConfirmedParticipation from "./pages/ConfirmedParticipation";
 import './App.css';
 
-
 function App() {
   return (
     <Router basename="/sport-social-app">
@@ -33,6 +32,7 @@ function App() {
         <Route path="/terms" element={<Terms />} />
         <Route path="/completeProfile" element={<CompleteProfile />} />
         <Route path="/meeting" element={<Meeting />} />
+        <Route path="/meeting/:id" element={<Meeting />} /> {/* ← Ruta dinámica agregada */}
         <Route path="/assignPositions" element={<AssignPositions />} />
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/participants" element={<Participants />} />

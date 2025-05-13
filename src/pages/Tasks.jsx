@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // ✅ Importar Link
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styles from '../styles/Tasks.module.css';
 import chatIcon from '../assets/chat.png';
 
@@ -7,12 +7,25 @@ const Tasks = () => {
   const [selectedTask, setSelectedTask] = useState('');
   const [selectedParticipant, setSelectedParticipant] = useState('');
   const [assignedTasks, setAssignedTasks] = useState([]);
+  const [participants, setParticipants] = useState([]);
+
+  // Simulación temporal de participantes reales
+  useEffect(() => {
+    const fakeParticipants = [
+      { uid: '1', nombre: 'Carlos', equipo: 'Rojo' },
+      { uid: '2', nombre: 'Lucía', equipo: 'Rojo' },
+      { uid: '3', nombre: 'Mateo', equipo: 'Azul' },
+      { uid: '4', nombre: 'Sofía', equipo: 'Azul' },
+    ];
+    setParticipants(fakeParticipants);
+  }, []);
 
   const handleAssignTask = () => {
     if (selectedTask && selectedParticipant) {
+      const participant = participants.find((p) => p.uid === selectedParticipant);
       const newTask = {
         task: selectedTask,
-        participant: selectedParticipant,
+        participant: participant?.nombre || 'Desconocido',
       };
 
       setAssignedTasks([...assignedTasks, newTask]);
@@ -26,9 +39,12 @@ const Tasks = () => {
     setAssignedTasks(updatedTasks);
   };
 
+  // Separar participantes por equipo
+  const equipoRojo = participants.filter(p => p.equipo === 'Rojo');
+  const equipoAzul = participants.filter(p => p.equipo === 'Azul');
+
   return (
     <div className={styles.container}>
-      {/* Encabezado */}
       <header className={styles.header}>
         <div className={styles.containerName}>
           <Link to="/meeting">
@@ -49,19 +65,17 @@ const Tasks = () => {
         </div>
       </header>
 
-      {/* Contenido principal */}
       <main>
         <div className={styles.asignarTarea}>
           <h3>Asignar Tareas</h3>
 
-          {/* Selección de tarea */}
           <label htmlFor="task-select">Selecciona una tarea:</label>
           <div className={styles.customSelect}>
             <select
               id="task-select"
               className={styles.taskSelect}
-              value={selectedTask} // Controlando el valor seleccionado
-              onChange={(e) => setSelectedTask(e.target.value)} // Actualizando el estado
+              value={selectedTask}
+              onChange={(e) => setSelectedTask(e.target.value)}
             >
               <option value="" disabled>Elige una tarea</option>
               <option value="implementos">Llevar implementos deportivos</option>
@@ -76,27 +90,26 @@ const Tasks = () => {
             <i className={`fa-solid fa-chevron-down ${styles.taskIcon}`}></i>
           </div>
 
-          {/* Selección de participante */}
           <h4>Seleccionar participante:</h4>
           <div className={styles.customSelect}>
             <select
               id="participant-select"
               className={styles.participantSelect}
-              value={selectedParticipant} // Controlando el valor seleccionado
-              onChange={(e) => setSelectedParticipant(e.target.value)} // Actualizando el estado
+              value={selectedParticipant}
+              onChange={(e) => setSelectedParticipant(e.target.value)}
             >
               <option value="" disabled>Selecciona un participante</option>
               <optgroup label="Equipo Rojo">
-                {[...Array(11)].map((_, i) => (
-                  <option key={i + 1} value={i + 1}>
-                    Participante {i + 1} - Número: {i + 1} (Rojo)
+                {equipoRojo.map((p) => (
+                  <option key={p.uid} value={p.uid}>
+                    {p.nombre} (Rojo)
                   </option>
                 ))}
               </optgroup>
               <optgroup label="Equipo Azul">
-                {[...Array(11)].map((_, i) => (
-                  <option key={i + 12} value={i + 12}>
-                    Participante {i + 12} - Número: {i + 1} (Azul)
+                {equipoAzul.map((p) => (
+                  <option key={p.uid} value={p.uid}>
+                    {p.nombre} (Azul)
                   </option>
                 ))}
               </optgroup>
@@ -113,7 +126,6 @@ const Tasks = () => {
           </button>
         </div>
 
-        {/* Lista de tareas asignadas */}
         <div className={styles.assignedTasks}>
           <h3>Tareas Asignadas</h3>
           <ul id="tasks-list" className={styles.tasksList}>
@@ -124,7 +136,6 @@ const Tasks = () => {
                   className={styles.removeButton}
                   onClick={() => handleRemoveTask(index)}
                   aria-label="Eliminar tarea"
-                  title="Eliminar tarea"
                 >
                   <i className="fa-solid fa-trash"></i>
                 </button>
@@ -134,7 +145,6 @@ const Tasks = () => {
         </div>
       </main>
 
-      {/* Pie de página */}
       <footer className={styles.footer}>
         <Link to="/meeting">
           <button className={styles.saveButton}>

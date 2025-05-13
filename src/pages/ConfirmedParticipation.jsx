@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getAuth } from 'firebase/auth';
 import styles from '../styles/ConfirmedParticipation.module.css';
 import chatIcon from '../assets/chat.png';
 import profileImage from '../assets/profile.jpg';
 
 const ConfirmedParticipation = () => {
   const [userName, setUserName] = useState('');
-  const [playerPosition, setPlayerPosition] = useState('');
-  const [teamName, setTeamName] = useState('');
   const [sportName, setSportName] = useState('');
 
   useEffect(() => {
-    setUserName(localStorage.getItem('userName') || 'Desconocido');
-    setPlayerPosition(localStorage.getItem('selectedPlayer') || 'No seleccionada');
-    setTeamName(localStorage.getItem('teamName') || 'Sin equipo');
-    setSportName(localStorage.getItem('sportName') || 'Deporte no especificado');
+    const auth = getAuth();
+    const currentUser = auth.currentUser;
+
+    if (currentUser) {
+      setUserName(currentUser.displayName || 'Desconocido');
+    } else {
+      setUserName('Desconocido');
+    }
+
+    const sport = localStorage.getItem('sportName') || 'Deporte no especificado';
+    setSportName(sport);
   }, []);
 
   return (
@@ -44,12 +50,6 @@ const ConfirmedParticipation = () => {
           </div>
           <div className={styles.playerInfo}>
             <h3 className={styles.playerName}>{userName}</h3>
-            <p className={styles.teamName}>
-              Equipo: <span>{teamName}</span>
-            </p>
-          </div>
-          <div className={styles.playerPosition}>
-            <p><span>{playerPosition}</span></p>
           </div>
         </div>
         <p>¿Quieres ver las tareas y posiciones de los demás integrantes?</p>
