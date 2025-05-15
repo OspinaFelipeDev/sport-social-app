@@ -70,12 +70,14 @@ const Meeting = () => {
         <Link to="/assignPositions" state={{ id }}>
           <button><span>Asignar Posición*</span></button>
         </Link>
-        <Link to="/tasks">
-          <button><span>Asignar tareas</span></button>
-        </Link>
-        <Link to="/participants">
-          <button><span>Ver participantes</span></button>
-        </Link>
+        <Link to="/tasks" state={{ id }}>
+  <button><span>Asignar tareas</span></button>
+</Link>
+
+        <Link to="/participants" state={{ id }}>
+  <button><span>Ver participantes</span></button>
+</Link>
+
         <Link to="/fileMeeting">
           <button><span>Mostrar ficha del encuentro</span></button>
         </Link>

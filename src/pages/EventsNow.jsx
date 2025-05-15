@@ -1,4 +1,3 @@
-// src/components/EventsNow.jsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { collection, getDocs, doc, updateDoc, arrayUnion } from 'firebase/firestore';
@@ -14,7 +13,7 @@ const EventsNow = () => {
   const [eventos, setEventos] = useState([]);
   const navigate = useNavigate();
   const auth = getAuth();
-  const currentUser = auth.currentUser;
+  const currentUser = auth.currentUser;  // ✅ Aquí obtenemos el usuario autenticado
 
   useEffect(() => {
     const fetchEventos = async () => {
@@ -54,19 +53,20 @@ const EventsNow = () => {
     const docRef = doc(db, "eventos", eventoId);
 
     try {
-      // Guardamos en localStorage el nombre del usuario y el deporte
-      localStorage.setItem("userName", currentUser.displayName || "Sin nombre");
-      localStorage.setItem("sportName", sportName);
+      // Usamos el nombre del usuario directamente desde Firebase Auth
+      const userName = currentUser.displayName || "Sin nombre";
 
       await updateDoc(docRef, {
         participantes: arrayUnion({
           uid: currentUser.uid,
-          nombre: currentUser.displayName || "Sin nombre",
+          name: userName,
         }),
       });
 
       // Redirigir a ConfirmedParticipation
-      navigate("/confirmedParticipation");
+      navigate("/confirmedParticipation", {
+        state: { userName, sportName },  // Pasamos directamente los datos al siguiente componente
+      });
     } catch (err) {
       console.error("Error al unirse al evento:", err);
     }

@@ -1,11 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import styles from '../styles/AssignPositions.module.css';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import chatIcon from '../assets/chat.png';
+import React, { useEffect, useState } from "react";
+import styles from "../styles/AssignPositions.module.css";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import chatIcon from "../assets/chat.png";
 
-import { db } from '../../src/firebase';
-import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
+import { db } from "../../src/firebase";
+import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+// 👇 Mapeo de posiciones por número
+const POSITION_NAMES = {
+  1: "Portero",
+  2: "Defensa central derecho",
+  3: "Defensa central izquierdo",
+  4: "Lateral izquierdo",
+  5: "Lateral derecho",
+  6: "Mediocentro defensivo",
+  7: "Mediocentro ofensivo",
+  8: "Extremo izquierdo",
+  9: "Delantero centro",
+  10: "Extremo derecho",
+  11: "Segundo delantero",
+};
+
+// 👇 Renderiza 11 posiciones por equipo
 const renderPlayers = (team, positions, participants, handleAssign) => {
   return Array.from({ length: 11 }, (_, i) => {
     const positionNum = i + 1;
@@ -24,24 +42,30 @@ const renderPlayers = (team, positions, participants, handleAssign) => {
           {participants.map((p) => (
             <li
               key={p.uid}
-              onClick={() => handleAssign(team, positionNum, p)}
+              onClick={() =>
+                handleAssign(team, positionNum, {
+                  uid: p.uid,
+                  name: p.name || p.nombre,
+                })
+              }
             >
-              {p.nombre}
+              {p.name || p.nombre}
             </li>
           ))}
         </ul>
-        {assigned && <p className={styles.assignedName}>{assigned.nombre}</p>}
+        {assigned && <p className={styles.assignedName}>{assigned.name}</p>}
       </div>
     );
   });
 };
 
-const cleanUndefined = (posiciones) => {
+// Limpia posiciones vacías antes de guardar
+const cleanUndefined = (positions) => {
   const cleaned = {};
-  for (const team in posiciones) {
+  for (const team in positions) {
     cleaned[team] = {};
-    for (const pos in posiciones[team]) {
-      const val = posiciones[team][pos];
+    for (const pos in positions[team]) {
+      const val = positions[team][pos];
       if (val && val.uid) {
         cleaned[team][pos] = val;
       }
@@ -57,11 +81,22 @@ const AssignPositions = () => {
 
   const [evento, setEvento] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
+    const auth = getAuth();
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        console.log("No hay usuario autenticado");
+      }
+    });
+
     if (!eventoId) return;
+
     const docRef = doc(db, "eventos", eventoId);
-    const unsubscribe = onSnapshot(docRef, (snap) => {
+    const unsubscribeEvento = onSnapshot(docRef, (snap) => {
       if (snap.exists()) {
         const data = snap.data();
         setEvento(data);
@@ -71,15 +106,24 @@ const AssignPositions = () => {
       setLoading(false);
     });
 
-    return () => unsubscribe();
+    return () => {
+      unsubscribeAuth();
+      unsubscribeEvento();
+    };
   }, [eventoId]);
 
+  // 👇 Modificado para guardar más información
   const handleAssign = (team, position, player) => {
     const updated = {
       ...evento.posiciones,
       [team]: {
         ...evento.posiciones?.[team],
-        [position]: { uid: player.uid, nombre: player.nombre },
+        [position]: {
+          uid: player.uid,
+          name: player.name,
+          posicion: POSITION_NAMES[position], // Agrega el nombre de la posición
+          equipo: team, // Agrega el equipo
+        },
       },
     };
 
@@ -97,7 +141,10 @@ const AssignPositions = () => {
 
     const cleaned = cleanUndefined(evento.posiciones);
 
-    if (Object.keys(cleaned.blue || {}).length === 0 && Object.keys(cleaned.red || {}).length === 0) {
+    if (
+      Object.keys(cleaned.blue || {}).length === 0 &&
+      Object.keys(cleaned.red || {}).length === 0
+    ) {
       alert("Debes asignar al menos una posición antes de guardar.");
       return;
     }
@@ -107,7 +154,8 @@ const AssignPositions = () => {
       await updateDoc(docRef, {
         posiciones: cleaned,
       });
-      navigate("/tasks");
+      navigate("/tasks", { state: { id: eventoId } });
+ // 👈 Redirección
     } catch (err) {
       console.error("Error al guardar las posiciones:", err);
     }
@@ -128,7 +176,11 @@ const AssignPositions = () => {
           </Link>
           <p>Asignar posiciones</p>
           <div className={styles.chatIconContainer}>
-            <a href="tu-url-de-chat.html" target="_blank" rel="noopener noreferrer">
+            <a
+              href="tu-url-de-chat.html"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img src={chatIcon} alt="chat" />
             </a>
           </div>
@@ -136,8 +188,8 @@ const AssignPositions = () => {
       </header>
 
       <main className={styles.field}>
-        {renderPlayers('blue', posiciones, participants, handleAssign)}
-        {renderPlayers('red', posiciones, participants, handleAssign)}
+        {renderPlayers("blue", posiciones, participants, handleAssign)}
+        {renderPlayers("red", posiciones, participants, handleAssign)}
       </main>
 
       <footer className={styles.footer}>
