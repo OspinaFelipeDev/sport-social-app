@@ -56,7 +56,7 @@ const ConfirmedParticipation = () => {
       </main>
 
       <footer className={styles.footer}>
-        <Link to="/fileMeeting">
+        <Link to="/participants">
           <button className={styles.button}>
             <span>Ver ficha</span>
           </button>

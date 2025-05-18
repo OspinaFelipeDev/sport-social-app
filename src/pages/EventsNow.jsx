@@ -6,14 +6,13 @@ import EventCard from './EventCard';
 import styles from '../styles/EventsNow.module.css';
 import balonImage from '../assets/balon.png';
 import balonBaloncestoImage from '../assets/balon.png';
-
 import { getAuth } from 'firebase/auth';
 
 const EventsNow = () => {
   const [eventos, setEventos] = useState([]);
   const navigate = useNavigate();
   const auth = getAuth();
-  const currentUser = auth.currentUser;  // ✅ Aquí obtenemos el usuario autenticado
+  const currentUser = auth.currentUser;
 
   useEffect(() => {
     const fetchEventos = async () => {
@@ -27,6 +26,8 @@ const EventsNow = () => {
             ubicacion: data.location,
             hora: data.time,
             fecha: data.date,
+            participantesActuales: data.participantes?.length || 0,
+            participantesMaximos: data.maxParticipantes || 0,
             imagen:
               data.sport === 'futbol'
                 ? balonImage
@@ -53,7 +54,6 @@ const EventsNow = () => {
     const docRef = doc(db, "eventos", eventoId);
 
     try {
-      // Usamos el nombre del usuario directamente desde Firebase Auth
       const userName = currentUser.displayName || "Sin nombre";
 
       await updateDoc(docRef, {
@@ -63,9 +63,8 @@ const EventsNow = () => {
         }),
       });
 
-      // Redirigir a ConfirmedParticipation
       navigate("/confirmedParticipation", {
-        state: { userName, sportName },  // Pasamos directamente los datos al siguiente componente
+        state: { userName, sportName },
       });
     } catch (err) {
       console.error("Error al unirse al evento:", err);
@@ -91,10 +90,17 @@ const EventsNow = () => {
         ) : (
           eventos.map((evento) => (
             <EventCard
-              key={evento.id}
-              {...evento}
-              onClick={() => handleJoinEvent(evento.id, evento.deporte)}
-            />
+  key={evento.id}
+  deporte={evento.deporte}
+  ubicacion={evento.ubicacion}
+  fecha={evento.fecha}
+  hora={evento.hora}
+  imagen={evento.imagen}
+  participantesActuales={evento.participantesActuales}
+  participantesMaximos={evento.participantesMaximos}
+  onClick={() => handleJoinEvent(evento.id, evento.deporte)}
+/>
+
           ))
         )}
       </main>

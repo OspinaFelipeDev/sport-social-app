@@ -2,19 +2,29 @@
 import React from 'react';
 import styles from '../styles/EventCard.module.css';
 
-const EventCard = ({ deporte, ubicacion, fecha, hora, imagen, onClick }) => {
+const EventCard = ({
+  deporte,
+  ubicacion,
+  fecha,
+  hora,
+  imagen,
+  participantesActuales,
+  participantesMaximos,
+  onClick,
+}) => {
   return (
     <div className={styles.tarjetaEncuentro} onClick={onClick}>
-      {/* Columna 1: Deporte, ubicación y fecha */}
+      {/* Columna 1: Deporte, ubicación, fecha y participantes */}
       <div className={styles.columnaDeporte}>
         <h2>{deporte}</h2>
-        <p>{ubicacion}</p>
-        <p>{formatDate(fecha)}</p>
+        <p><i className="fas fa-map-marker-alt"></i> {ubicacion}</p>
+        <p><i className="fas fa-calendar-alt"></i> {formatDate(fecha)}</p>
+        <p><i className="fas fa-users"></i> {participantesActuales} / {participantesMaximos} participantes</p>
       </div>
 
       {/* Columna 2: Hora y flecha */}
       <div className={styles.columnaHora}>
-        <p>{hora}</p>
+        <p><i className="fas fa-clock"></i> {hora}</p>
         <i className={`fa-solid fa-chevron-right ${styles.botonFlecha}`}></i>
       </div>
 

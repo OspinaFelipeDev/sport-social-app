@@ -50,7 +50,8 @@ const Where = () => {
         sport,
         createdAt: new Date(),
         userId: user.uid,
-        userEmail: user.email
+        userEmail: user.email,
+        maxParticipantes: 22,
       });
   
       // Redirigir a la página del evento con su ID
