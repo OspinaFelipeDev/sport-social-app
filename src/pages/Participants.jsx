@@ -1,4 +1,3 @@
-// Participants.jsx
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from '../styles/Participants.module.css';
@@ -7,7 +6,7 @@ import chatIcon from '../assets/chat.png';
 import { db } from '../../src/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 
-import ParticipantCard from './ParticipantCard';  // Importa el componente aquí
+import ParticipantCard from './ParticipantCard';
 
 export default function Participants() {
   const location = useLocation();
@@ -29,10 +28,13 @@ export default function Participants() {
           const posiciones = data.posiciones || {};
           const tareas = data.tareas || [];
 
+          // Mapeamos para agregar detalles
           const participantesConDetalles = participantes.map((p) => {
+            console.log('Participante:', p.nombre || p.name, 'photoURL:', p.photoURL);
             let posicion = null;
             let equipo = null;
 
+            // Buscar posición y equipo en posiciones
             for (const [team, teamPositions] of Object.entries(posiciones)) {
               for (const [posNum, assignedPlayer] of Object.entries(teamPositions)) {
                 if (assignedPlayer.uid === p.uid) {
@@ -42,6 +44,7 @@ export default function Participants() {
               }
             }
 
+            // Buscar tarea asignada
             const tareaAsignada = tareas.find(
               (t) => t.participant === p.nombre || t.participant === p.name
             );
@@ -51,6 +54,8 @@ export default function Participants() {
               posicion: posicion || 'Sin asignar',
               equipo: equipo || '',
               tarea: tareaAsignada?.task || 'Sin tarea asignada',
+              // aseguramos que photoURL exista o fallback
+              photoURL: p.photoURL || 'https://i.pravatar.cc/60',
             };
           });
 
@@ -95,7 +100,7 @@ export default function Participants() {
             nombre={p.nombre || p.name}
             tarea={p.tarea}
             posicion={p.posicion}
-            foto={p.avatar || 'https://i.pravatar.cc/60'}
+            foto={p.photoURL}
             equipo={p.equipo}
           />
         ))}

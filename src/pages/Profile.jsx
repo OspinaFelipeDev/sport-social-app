@@ -54,7 +54,7 @@ function Profile() {
         ></i>
 
         <img
-          src={userData.fotoPerfil || profileImagePlaceholder}
+          src={userData.photoURL || profileImagePlaceholder}
           alt="Foto de perfil"
           className={styles.profileImage}
         />

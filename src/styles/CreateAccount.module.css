@@ -145,6 +145,24 @@
   color: #fff;
 }
 
+.errorMessage {
+  color: var(--color-accent);
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.checkText {
+  color: var(--color-secondary);
+  cursor: pointer;
+}
+
+.legalLink {
+  color: var(--color-blue); /* o cualquier otro color */
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
 .loginLink {
   font-size: 16px;
   color: var(--color-accent);
@@ -154,8 +172,3 @@
   cursor: pointer;
 }
 
-.errorMessage {
-  color: var(--color-accent);
-  font-weight: bold;
-  margin-bottom: 1rem;
-}

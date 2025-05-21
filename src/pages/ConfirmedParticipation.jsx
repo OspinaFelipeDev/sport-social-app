@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAuth } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../src/firebase'; // Ajusta esta importación según tu estructura
 import styles from '../styles/ConfirmedParticipation.module.css';
 import chatIcon from '../assets/chat.png';
 import profileImage from '../assets/profile.jpg';
@@ -8,19 +10,36 @@ import profileImage from '../assets/profile.jpg';
 const ConfirmedParticipation = () => {
   const [userName, setUserName] = useState('');
   const [sportName, setSportName] = useState('');
+  const [profilePhotoURL, setProfilePhotoURL] = useState(profileImage);
 
   useEffect(() => {
-    const auth = getAuth();
-    const currentUser = auth.currentUser;
+    const fetchUserData = async () => {
+      const auth = getAuth();
+      const currentUser = auth.currentUser;
 
-    if (currentUser) {
-      setUserName(currentUser.displayName || 'Desconocido');
-    } else {
-      setUserName('Desconocido');
-    }
+      if (currentUser) {
+        setUserName(currentUser.displayName || 'Desconocido');
+        try {
+          const docRef = doc(db, "users", currentUser.uid);
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            if (data.photoURL) {
+              setProfilePhotoURL(data.photoURL);
+            }
+          }
+        } catch (error) {
+          console.error("Error al obtener la foto de perfil:", error);
+        }
+      } else {
+        setUserName('Desconocido');
+      }
 
-    const sport = localStorage.getItem('sportName') || 'Deporte no especificado';
-    setSportName(sport);
+      const sport = localStorage.getItem('sportName') || 'Deporte no especificado';
+      setSportName(sport);
+    };
+
+    fetchUserData();
   }, []);
 
   return (
@@ -46,7 +65,7 @@ const ConfirmedParticipation = () => {
         </p>
         <div className={styles.playerCard}>
           <div className={styles.playerPhoto}>
-            <img src={profileImage} alt="Foto del jugador" />
+            <img src={profilePhotoURL} alt="Foto del jugador" />
           </div>
           <div className={styles.playerInfo}>
             <h3 className={styles.playerName}>{userName}</h3>

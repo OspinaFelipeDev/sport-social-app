@@ -98,12 +98,8 @@ function CreateAccount() {
               <p>
                 <span>Al crear una cuenta, acepto los </span>
                 <span
+                  className={styles.legalLink}
                   onClick={() => navigate("/terms")}
-                  style={{
-                    color: "#007bff",
-                    cursor: "pointer",
-                    textDecoration: "underline",
-                  }}
                 >
                   términos y condiciones y la política de privacidad.
                 </span>

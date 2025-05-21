@@ -1,15 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/CompleteProfile.module.css";
-import { auth, db } from "../../src/firebase"; // Ajusta si la ruta cambia
+import { auth, db } from "../../src/firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const CompleteProfile = () => {
   const [nombre, setNombre] = useState("");
+  const [residencia, setResidencia] = useState("");
+  const [deportes, setDeportes] = useState("");
+  const [edad, setEdad] = useState("");
+  const [descripcion, setDescripcion] = useState("");
+  const [profileImageURL, setProfileImageURL] = useState("https://placehold.co/150x150");
   const fileInputRef = useRef(null);
   const navigate = useNavigate();
 
-  // Obtener nombre del usuario desde Firestore
   useEffect(() => {
     const fetchUserData = async () => {
       const user = auth.currentUser;
@@ -17,7 +21,15 @@ const CompleteProfile = () => {
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          setNombre(docSnap.data().name || "");
+          const userData = docSnap.data();
+          setNombre(userData.name || "");
+          setResidencia(userData.residencia || "");
+          setDeportes(userData.deportes || "");
+          setEdad(userData.edad || "");
+          setDescripcion(userData.descripcion || "");
+          if (userData.photoURL) {
+            setProfileImageURL(userData.photoURL);
+          }
         }
       }
     };
@@ -29,19 +41,44 @@ const CompleteProfile = () => {
     fileInputRef.current.click();
   };
 
-  const handleSave = async () => {
+  const handleImageChange = async (event) => {
+    const file = event.target.files[0];
     const user = auth.currentUser;
 
-    if (!user) {
-      console.error("Usuario no autenticado.");
-      return;
+    if (!file || !user) return;
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "unsigned_profile_upload");
+    formData.append("folder", "profilePics");
+
+    try {
+      const response = await fetch("https://api.cloudinary.com/v1_1/dqstbikug/image/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      const imageUrl = data.secure_url;
+      setProfileImageURL(imageUrl);
+
+      // Guarda la URL en Firestore
+      await setDoc(doc(db, "users", user.uid), { photoURL: imageUrl }, { merge: true });
+    } catch (error) {
+      console.error("Error al subir la imagen a Cloudinary:", error.message);
     }
+  };
+
+  const handleSave = async () => {
+    const user = auth.currentUser;
+    if (!user) return;
 
     const profileData = {
-      residencia: document.getElementById("residencia").value,
-      deportes: document.getElementById("deportes").value,
-      edad: document.getElementById("edad").value,
-      descripcion: document.getElementById("descripcion").value,
+      name: nombre,
+      residencia,
+      deportes,
+      edad,
+      descripcion,
     };
 
     try {
@@ -60,7 +97,7 @@ const CompleteProfile = () => {
         <div className={styles.profileContainer}>
           <img
             id="profileImage"
-            src="https://placehold.co/150x150"
+            src={profileImageURL}
             alt="Foto de perfil"
             className={styles.profileImage}
           />
@@ -72,6 +109,7 @@ const CompleteProfile = () => {
             ref={fileInputRef}
             accept="image/*"
             style={{ display: "none" }}
+            onChange={handleImageChange}
           />
         </div>
 
@@ -81,11 +119,23 @@ const CompleteProfile = () => {
 
       <main className={styles.main}>
         <div className={styles.inputBox}>
+          <i className="fas fa-user"></i>
+          <input
+            type="text"
+            placeholder="Nombre"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className={styles.inputBox}>
           <i className="fas fa-map-marker-alt"></i>
           <input
             type="text"
-            id="residencia"
             placeholder="Lugar de residencia"
+            value={residencia}
+            onChange={(e) => setResidencia(e.target.value)}
             required
           />
         </div>
@@ -94,8 +144,9 @@ const CompleteProfile = () => {
           <i className="fas fa-futbol"></i>
           <input
             type="text"
-            id="deportes"
             placeholder="Deportes favoritos"
+            value={deportes}
+            onChange={(e) => setDeportes(e.target.value)}
             required
           />
         </div>
@@ -104,8 +155,9 @@ const CompleteProfile = () => {
           <i className="fas fa-calendar-alt"></i>
           <input
             type="number"
-            id="edad"
             placeholder="Edad"
+            value={edad}
+            onChange={(e) => setEdad(e.target.value)}
             min="0"
             max="120"
             required
@@ -114,8 +166,9 @@ const CompleteProfile = () => {
 
         <div className={styles.inputBox}>
           <textarea
-            id="descripcion"
             placeholder="Haz una breve descripción de ti...💁"
+            value={descripcion}
+            onChange={(e) => setDescripcion(e.target.value)}
             required
           ></textarea>
         </div>

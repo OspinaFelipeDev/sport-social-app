@@ -46,30 +46,37 @@ const EventsNow = () => {
   }, []);
 
   const handleJoinEvent = async (eventoId, sportName) => {
-    if (!currentUser) {
-      alert("Debes iniciar sesión para unirte a un evento.");
-      return;
-    }
+  if (!currentUser) {
+    alert("Debes iniciar sesión para unirte a un evento.");
+    return;
+  }
 
-    const docRef = doc(db, "eventos", eventoId);
+  const docRef = doc(db, "eventos", eventoId);
+  const userDocRef = doc(db, "users", currentUser.uid);
 
-    try {
-      const userName = currentUser.displayName || "Sin nombre";
+  try {
+    const userSnap = await getDocs(collection(db, "users"));
+    const userData = userSnap.docs.find(doc => doc.id === currentUser.uid)?.data();
 
-      await updateDoc(docRef, {
-        participantes: arrayUnion({
-          uid: currentUser.uid,
-          name: userName,
-        }),
-      });
+    const userName = userData?.name || currentUser.displayName || "Sin nombre";
+    const photoURL = userData?.photoURL || "";
 
-      navigate("/confirmedParticipation", {
-        state: { userName, sportName },
-      });
-    } catch (err) {
-      console.error("Error al unirse al evento:", err);
-    }
-  };
+    await updateDoc(docRef, {
+      participantes: arrayUnion({
+        uid: currentUser.uid,
+        name: userName,
+        photoURL: photoURL,
+      }),
+    });
+
+    navigate("/confirmedParticipation", {
+      state: { userName, sportName },
+    });
+  } catch (err) {
+    console.error("Error al unirse al evento:", err);
+  }
+};
+
 
   return (
     <div className={styles.wrapper}>
