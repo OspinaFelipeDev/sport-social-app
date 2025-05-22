@@ -3,6 +3,7 @@ import styles from "../styles/Meeting.module.css";
 import { Link, useParams } from "react-router-dom";
 import chatIcon from "../assets/chat.png";
 
+import { auth } from "../../src/firebase";
 import { db } from "../../src/firebase";
 import { doc, onSnapshot } from "firebase/firestore";
 
@@ -12,7 +13,10 @@ const Meeting = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Referencia al documento de evento en Firestore
     const docRef = doc(db, "eventos", id);
+
+    // Suscribirse a los cambios del documento en tiempo real
     const unsubscribe = onSnapshot(
       docRef,
       (docSnap) => {
@@ -20,6 +24,7 @@ const Meeting = () => {
           setEvento(docSnap.data());
         } else {
           console.log("El evento no existe");
+          setEvento(null);
         }
         setLoading(false);
       },
@@ -29,7 +34,7 @@ const Meeting = () => {
       }
     );
 
-    // Limpiar suscripción cuando el componente se desmonte
+    // Cleanup: cancelar la suscripción al desmontar el componente
     return () => unsubscribe();
   }, [id]);
 
@@ -98,7 +103,13 @@ const Meeting = () => {
           </button>
         </Link>
 
-        <Link to="/participants" state={{ id }}>
+        <Link
+          to="/participants"
+          state={{
+            id,
+            isAdmin: auth.currentUser?.uid === evento.administradorId,
+          }}
+        >
           <button>
             <span>Ver participantes</span>
           </button>

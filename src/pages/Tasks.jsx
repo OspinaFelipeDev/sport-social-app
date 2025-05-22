@@ -6,9 +6,20 @@ import chatIcon from "../assets/chat.png";
 import { db } from "../../src/firebase";
 import { doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
 
+const traducirEquipo = (equipo) => {
+  switch (equipo) {
+    case "blue":
+      return "Azul";
+    case "red":
+      return "Rojo";
+    default:
+      return "Desconocido";
+  }
+};
+
 const Tasks = () => {
   const location = useLocation();
-  const navigate = useNavigate(); // ✅ Para redirigir
+  const navigate = useNavigate();
   const eventoId = location.state?.id;
   console.log("Evento ID:", eventoId);
 
@@ -25,6 +36,7 @@ const Tasks = () => {
       try {
         const docRef = doc(db, "eventos", eventoId);
         const eventoSnap = await getDoc(docRef);
+
         if (eventoSnap.exists()) {
           const data = eventoSnap.data();
           const participantes = data.participantes || [];
@@ -33,16 +45,18 @@ const Tasks = () => {
           const participantesConPosicion = participantes.map((p) => {
             let posicion = null;
             let equipo = null;
+            let encontrado = false;
 
             for (const [team, teamPositions] of Object.entries(posiciones)) {
-              for (const [posNum, assignedPlayer] of Object.entries(
-                teamPositions
-              )) {
+              for (const [posNum, assignedPlayer] of Object.entries(teamPositions)) {
                 if (assignedPlayer.uid === p.uid) {
                   posicion = assignedPlayer.posicion;
-                  equipo = assignedPlayer.equipo;
+                  equipo = assignedPlayer.equipo || team;
+                  encontrado = true;
+                  break;
                 }
               }
+              if (encontrado) break;
             }
 
             return {
@@ -66,11 +80,8 @@ const Tasks = () => {
 
   const handleAssignTask = () => {
     if (selectedTask && selectedParticipant) {
-      const participant = participants.find(
-        (p) => p.uid === selectedParticipant
-      );
+      const participant = participants.find((p) => p.uid === selectedParticipant);
 
-      // Verificar si ya existe la misma tarea asignada al mismo participante
       const yaAsignada = assignedTasks.some(
         (t) =>
           t.task === selectedTask &&
@@ -79,7 +90,7 @@ const Tasks = () => {
 
       if (yaAsignada) {
         setErrorMessage("🏃‍♂️ ¡Ups! Este jugador ya tiene esa tarea.");
-        setTimeout(() => setErrorMessage(""), 3000); // Ocultar después de 3 segundos
+        setTimeout(() => setErrorMessage(""), 3000);
         return;
       }
 
@@ -91,7 +102,7 @@ const Tasks = () => {
       setAssignedTasks((prev) => [...prev, newTask]);
       setSelectedTask("");
       setSelectedParticipant("");
-      setErrorMessage(""); // limpiar mensaje si antes hubo error
+      setErrorMessage("");
     }
   };
 
@@ -99,7 +110,6 @@ const Tasks = () => {
     setAssignedTasks((prev) => prev.filter((_, i) => i !== index));
   };
 
-  // ✅ NUEVA FUNCIÓN para guardar en Firestore y navegar
   const handleSaveTasks = async () => {
     if (!eventoId || assignedTasks.length === 0) return;
 
@@ -109,7 +119,7 @@ const Tasks = () => {
         tareas: arrayUnion(...assignedTasks),
       });
 
-      navigate("/participants", { state: { id: eventoId } }); // ✅ Redirigir
+      navigate("/participants", { state: { id: eventoId, isAdmin: true } });
     } catch (error) {
       console.error("Error al guardar las tareas:", error);
     }
@@ -181,10 +191,7 @@ const Tasks = () => {
                 .map((p) => (
                   <option key={p.uid} value={p.uid}>
                     {p.nombre || p.name}
-                    {p.posicion &&
-                      ` - ${p.posicion} (${
-                        p.equipo?.toLowerCase() === "azul" ? "Azul" : "Rojo"
-                      })`}
+                    {p.posicion && ` - ${p.posicion} (${traducirEquipo(p.equipo)})`}
                   </option>
                 ))}
             </select>
@@ -220,7 +227,6 @@ const Tasks = () => {
           </ul>
         </div>
 
-        {/* ✅ Botón para guardar y redirigir */}
         <div className={styles.saveButtonContainer}>
           <button className={styles.saveButton} onClick={handleSaveTasks}>
             Guardar

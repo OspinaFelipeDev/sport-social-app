@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import styles from "../styles/Where.module.css";
 import mapImage from "../assets/ubication.jpeg";
 
@@ -14,56 +13,55 @@ const Where = () => {
   const [time, setTime] = useState("");
   const [sport, setSport] = useState("");
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Escuchar cambios en el estado de autenticación
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        setUser(currentUser);
-      } else {
-        setUser(null);
-      }
+      setUser(currentUser || null);
     });
 
-    return () => unsubscribe(); // Limpiar suscripción
+    return () => unsubscribe();
   }, []);
 
   const handleCreateEvent = async () => {
-    if (!location || !date || !time || !sport) {
+    if (!location.trim() || !date || !time || !sport) {
       alert("Por favor completa todos los campos.");
       return;
     }
-  
+
     if (!user) {
       alert("Debes iniciar sesión para crear un evento.");
       return;
     }
-  
+
     try {
-      // Crear evento y obtener referencia del documento
+      setLoading(true);
+
       const docRef = await addDoc(collection(db, "eventos"), {
-        location,
-        date,
-        time,
-        sport,
-        createdAt: new Date(),
-        userId: user.uid,
-        userEmail: user.email,
-        maxParticipantes: 22,
-      });
-  
-      // Redirigir a la página del evento con su ID
+  location: location.trim(),
+  date,
+  time,
+  sport,
+  createdAt: new Date(),
+  userId: user.uid,
+  userEmail: user.email,
+  maxParticipantes: 22,
+  estado: "pendiente",
+  administradorId: user.uid,      // 👈 NUEVO: ID del administrador
+  administradorEmail: user.email  // 👈 NUEVO: Email del administrador
+});
+
+
       navigate(`/meeting/${docRef.id}`);
     } catch (error) {
       console.error("Error al crear el evento:", error);
       alert("Ocurrió un error al crear el evento.");
+    } finally {
+      setLoading(false);
     }
   };
-  
-
-  
 
   return (
     <div className={styles.whereContainer}>
@@ -100,7 +98,6 @@ const Where = () => {
           <div className={styles.datePickerContainer}>
             <input
               type="date"
-              id="event-date"
               className={styles.dateInput}
               value={date}
               onChange={(e) => setDate(e.target.value)}
@@ -109,7 +106,6 @@ const Where = () => {
           <div className={styles.timePickerContainer}>
             <input
               type="time"
-              id="event-time"
               className={styles.timeInput}
               value={time}
               onChange={(e) => setTime(e.target.value)}
@@ -121,7 +117,6 @@ const Where = () => {
         <div className={styles.sportSelectorContainer}>
           <div className={styles.customSelect}>
             <select
-              id="sport-select"
               className={styles.sportSelect}
               value={sport}
               onChange={(e) => setSport(e.target.value)}
@@ -137,8 +132,12 @@ const Where = () => {
 
       {/* Footer */}
       <footer className={styles.whereFooter}>
-        <button className={styles.createEventButton} onClick={handleCreateEvent}>
-          <span>Crear Evento</span>
+        <button
+          className={styles.createEventButton}
+          onClick={handleCreateEvent}
+          disabled={loading}
+        >
+          <span>{loading ? "Creando..." : "Crear Evento"}</span>
         </button>
       </footer>
     </div>

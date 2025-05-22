@@ -10,6 +10,8 @@ const ParticipantCard = ({
   equipo = '',
 }) => {
   const equipoLower = equipo.toLowerCase();
+  const nombreEquipo =
+    equipoLower === 'azul' ? 'Equipo Azul' : equipoLower === 'rojo' ? 'Equipo Rojo' : 'Sin equipo';
 
   return (
     <div
@@ -19,12 +21,9 @@ const ParticipantCard = ({
     >
       <img src={foto} alt={nombre} className={styles.foto} />
       <h3>{nombre}</h3>
-      <p>
-        <strong>Posición:</strong> {posicion}
-      </p>
-      <p>
-        <strong>Tarea:</strong> {tarea}
-      </p>
+      <p><strong>Equipo:</strong> {nombreEquipo}</p>
+      <p><strong>Posición:</strong> {posicion}</p>
+      <p><strong>Tarea:</strong> {tarea}</p>
     </div>
   );
 };

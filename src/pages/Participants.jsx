@@ -1,80 +1,94 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import styles from '../styles/Participants.module.css';
-import chatIcon from '../assets/chat.png';
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import styles from "../styles/Participants.module.css";
+import chatIcon from "../assets/chat.png";
 
-import { db } from '../../src/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { db } from "../../src/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
-import ParticipantCard from './ParticipantCard';
+import ParticipantCard from "./ParticipantCard";
 
 export default function Participants() {
   const location = useLocation();
   const eventoId = location.state?.id;
-
+  const [isAdmin, setIsAdmin] = useState(false);
   const [participants, setParticipants] = useState([]);
+
+  useEffect(() => {
+    if (location.state) {
+      setIsAdmin(location.state.isAdmin || false);
+    }
+  }, [location.state]);
 
   useEffect(() => {
     const fetchParticipants = async () => {
       if (!eventoId) return;
 
       try {
-        const docRef = doc(db, 'eventos', eventoId);
+        const docRef = doc(db, "eventos", eventoId);
         const eventoSnap = await getDoc(docRef);
 
         if (eventoSnap.exists()) {
           const data = eventoSnap.data();
+
           const participantes = data.participantes || [];
           const posiciones = data.posiciones || {};
           const tareas = data.tareas || [];
 
-          // Mapeamos para agregar detalles
           const participantesConDetalles = participantes.map((p) => {
-            console.log('Participante:', p.nombre || p.name, 'photoURL:', p.photoURL);
             let posicion = null;
             let equipo = null;
 
-            // Buscar posición y equipo en posiciones
             for (const [team, teamPositions] of Object.entries(posiciones)) {
-              for (const [posNum, assignedPlayer] of Object.entries(teamPositions)) {
+              for (const [posNum, assignedPlayer] of Object.entries(
+                teamPositions
+              )) {
                 if (assignedPlayer.uid === p.uid) {
                   posicion = assignedPlayer.posicion;
-                  equipo = assignedPlayer.equipo;
+                  equipo =
+                    team === "blue" ? "azul" : team === "red" ? "rojo" : team;
                 }
               }
             }
 
-            // Buscar tarea asignada
             const tareaAsignada = tareas.find(
               (t) => t.participant === p.nombre || t.participant === p.name
             );
 
             return {
               ...p,
-              posicion: posicion || 'Sin asignar',
-              equipo: equipo || '',
-              tarea: tareaAsignada?.task || 'Sin tarea asignada',
-              // aseguramos que photoURL exista o fallback
-              photoURL: p.photoURL || 'https://i.pravatar.cc/60',
+              posicion: posicion || "Sin asignar",
+              equipo: equipo || "",
+              tarea: tareaAsignada?.task || "Sin tarea asignada",
+              photoURL: p.photoURL || "https://i.pravatar.cc/60",
             };
           });
 
           setParticipants(participantesConDetalles);
         }
       } catch (error) {
-        console.error('Error al obtener datos de participantes:', error);
+        console.error("Error al obtener datos de participantes:", error);
       }
     };
 
     fetchParticipants();
   }, [eventoId]);
 
+  if (!eventoId) {
+    return <p>Error: ID del evento no proporcionado.</p>;
+  }
+
   return (
     <div className={styles.participantsWrapper}>
       <header className={styles.header}>
         <div className={styles.containerName}>
-          <Link to={`/meeting/${eventoId}`}>
-            <i className={`fa-solid fa-circle-arrow-left ${styles.iconoVolver}`}></i>
+          <Link
+            to={isAdmin ? `/meeting/${eventoId}` : "/profile"}
+            className={styles.iconLink}
+          >
+            <i
+              className={`fa-solid fa-circle-arrow-left ${styles.iconoVolver}`}
+            ></i>
           </Link>
 
           <p className={styles.title}>Participantes</p>

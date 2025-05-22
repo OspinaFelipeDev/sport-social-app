@@ -70,8 +70,9 @@ const EventsNow = () => {
     });
 
     navigate("/confirmedParticipation", {
-      state: { userName, sportName },
-    });
+  state: { userName, sportName, id: eventoId },
+});
+
   } catch (err) {
     console.error("Error al unirse al evento:", err);
   }
