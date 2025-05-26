@@ -69,12 +69,13 @@
 }
 
 .participantsMain {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 2rem 1rem;
-    justify-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
 }
+
 
 .participantCard {
     display: flex;
@@ -109,28 +110,5 @@
     justify-content: center;
 }
 
-.participantName {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--color-secondary);
-    margin-bottom: 0.3rem;
-}
 
-.participantNumber {
-    font-size: 1.4rem;
-    color: var(--color-gray);
-}
 
-/* Tablet */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .participantsMain {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Desktop */
-@media (min-width: 1024px) {
-    .participantsMain {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}

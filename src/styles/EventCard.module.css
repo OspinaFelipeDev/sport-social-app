@@ -94,3 +94,30 @@
       max-width: 600px;
     }
   }
+
+.mensajeUnido {
+  color: green;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.unido {
+  background-color: #f0f0f0;
+  opacity: 0.85;
+}
+
+.botonCancelar {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.botonCancelar:hover {
+  background-color: #c0392b;
+}
+
+

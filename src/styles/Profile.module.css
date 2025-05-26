@@ -31,7 +31,7 @@
     align-items: center;
     background: var(--color-accent);
     border-radius: 0 0 2rem 2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
 
@@ -42,7 +42,7 @@
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid white;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* 🎯 Iconos */
@@ -79,7 +79,7 @@
     margin-top: -2rem;
     border-radius: 1.5rem;
     padding: 2rem;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
 .nameAge {
@@ -173,6 +173,56 @@ h1 {
         height: 5.2rem;
     }
 }
+
+/* 👑 Sección de administrador de eventos */
+.adminEventSection {
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.adminEventSection p {
+    font-size: 1.6rem;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+}
+
+/* 📝 Tarjeta del evento donde es administrador */
+.eventCard {
+    cursor: pointer;
+    border: 1px solid #ccc;
+    padding: 1.6rem;
+    border-radius: 1rem;
+    background-color: var(--color-light-gray);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.eventCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: var(--color-white);
+}
+
+.eventCard h3 {
+    font-size: 2rem;
+    color: var(--color-blue);
+    margin-bottom: 0.8rem;
+}
+
+.eventCard p {
+    font-size: 1.6rem;
+    color: var(--color-secondary);
+    margin: 0.3rem 0;
+}
+
+.sportTitle {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+
+
 
 /* 💻 Desktop */
 @media (min-width: 1024px) {

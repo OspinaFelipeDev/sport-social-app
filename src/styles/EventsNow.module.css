@@ -23,41 +23,51 @@
   box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
 }
 
+
+
+.containerName {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centra el ícono y el texto */
+  gap: 10px;
+  position: relative;
+}
+
 .header {
   width: 100%;
-  padding: 16px 24px;
   position: relative;
+  padding: 16px 24px;
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 2rem;
   color: var(--color-secondary);
   text-align: center;
-}
-
-.containerName {
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Centra el contenido (título) */
-  width: 100%;
-  position: relative;
-  min-height: 50px; /* para que no se colapse si el ícono se sale del flujo */
-
+  padding-left: 6.2rem;
 }
 
 .iconoVolver {
   position: absolute;
-  left: -3rem; /* más predecible en todos los tamaños */
-  padding-left: 10px; /* da un poco de espacio sin romper */
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 3rem;
   color: var(--color-secondary);
-  text-decoration: none;
-  transition: transform 0.3s ease;
+  cursor: pointer;
 }
-
 
 .iconoVolver:hover {
-  transform: scale(1.1);
+  transform: translateY(-50%) scale(1.1);
 }
+
+.tituloCentro {
+  margin: 0;
+  font-size: 2.7rem;
+}
+
+
+
+
+
 
 #deporteSeleccionado {
   font-size: 1.6rem;

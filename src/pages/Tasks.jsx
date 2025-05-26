@@ -95,9 +95,11 @@ const Tasks = () => {
       }
 
       const newTask = {
-        task: selectedTask,
-        participant: participant?.nombre || participant?.name || "Desconocido",
-      };
+  task: selectedTask,
+  participant: participant?.nombre || participant?.name || "Desconocido",
+  userId: participant?.uid, // 👈 Agrega esto
+};
+
 
       setAssignedTasks((prev) => [...prev, newTask]);
       setSelectedTask("");

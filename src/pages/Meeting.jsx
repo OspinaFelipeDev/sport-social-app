@@ -58,18 +58,15 @@ const Meeting = () => {
               className={`fa-solid fa-circle-arrow-left ${styles.iconoVolver}`}
             ></i>
           </Link>
-          <p id="deporte-seleccionado">{evento.sport}</p>
+          <p id="deporte-seleccionado">
+            {evento.sport.charAt(0).toUpperCase() + evento.sport.slice(1)}
+          </p>
+
           <div className={styles.chatIconContainer}>
-            <a
-              href="tu-url-de-chat.html"
-              className={styles.chatLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Abrir chat"
-            >
-              <img src={chatIcon} alt="Chat icon" />
-            </a>
-          </div>
+  <Link to={`/chat/${id}`} className={styles.chatLink} aria-label="Abrir chat">
+    <img src={chatIcon} alt="Chat icon" />
+  </Link>
+</div>
         </div>
 
         <div className={styles.eventDetails}>

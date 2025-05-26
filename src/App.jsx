@@ -17,6 +17,7 @@ import EventCard from "./pages/EventCard";
 import EventsNow from "./pages/EventsNow";
 import ChoosePosition from "./pages/ChoosePosition";
 import ConfirmedParticipation from "./pages/ConfirmedParticipation";
+import ChatRoom from "./pages/ChatRoom"
 import './App.css';
 
 function App() {
@@ -42,6 +43,8 @@ function App() {
         <Route path="/eventsNow" element={<EventsNow />} />
         <Route path="/choosePosition" element={<ChoosePosition />} />
         <Route path="/confirmedParticipation" element={<ConfirmedParticipation />} />
+        <Route path="/chatRoom" element={<ChatRoom />} />
+        <Route path="/chat/:id" element={<ChatRoom />} />
       </Routes>
     </Router>
   );

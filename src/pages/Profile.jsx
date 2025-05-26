@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/Profile.module.css";
-import profileImagePlaceholder from "../assets/pro.png"; // Imagen por defecto
+import profileImagePlaceholder from "../assets/pro.png";
 import { auth, db } from "../../src/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 
 function Profile() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
+  const [adminEvent, setAdminEvent] = useState(null); // <-- Para evento admin
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    const fetchUserDataAndEvent = async () => {
       const user = auth.currentUser;
       if (!user) {
         navigate("/login");
@@ -19,6 +27,7 @@ function Profile() {
       }
 
       try {
+        // Obtener datos del usuario
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
 
@@ -27,14 +36,34 @@ function Profile() {
         } else {
           console.warn("No se encontraron datos del usuario");
         }
+
+        // Buscar evento donde sea administrador
+        const eventosRef = collection(db, "eventos");
+        const q = query(eventosRef, where("administradorId", "==", user.uid));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+          // Si hay más de un evento admin, puedes manejar eso aquí (por ahora solo el primero)
+          setAdminEvent(querySnapshot.docs[0].data());
+          // Guarda también el id para poder navegar
+          setAdminEvent((prev) => ({
+            ...prev,
+            id: querySnapshot.docs[0].id,
+          }));
+        } else {
+          setAdminEvent(null);
+        }
       } catch (error) {
-        console.error("Error al obtener datos del usuario:", error.message);
+        console.error(
+          "Error al obtener datos del usuario o evento:",
+          error.message
+        );
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchUserData();
+    fetchUserDataAndEvent();
   }, [navigate]);
 
   if (isLoading) {
@@ -44,6 +73,23 @@ function Profile() {
   if (!userData) {
     return <p className={styles.error}>No se encontraron datos del perfil.</p>;
   }
+
+  const getSportIcon = (sportName) => {
+  switch (sportName.toLowerCase()) {
+    case "fútbol":
+    case "futbol":
+      return <i className="fas fa-futbol" style={{ marginRight: "8px" }}></i>;
+    case "baloncesto":
+      return <i className="fas fa-basketball-ball" style={{ marginRight: "8px" }}></i>;
+    case "voleibol":
+    case "volleyball":
+    case "voley":
+      return <i className="fas fa-volleyball-ball" style={{ marginRight: "8px" }}></i>;
+    default:
+      return <i className="fas fa-dumbbell" style={{ marginRight: "8px" }}></i>; // ícono genérico
+  }
+};
+
 
   return (
     <div className={styles.profileContainer}>
@@ -82,6 +128,33 @@ function Profile() {
         >
           Eventos para hoy
         </button>
+
+        {/* Aquí mostramos la frase y la tarjeta del evento admin */}
+        {adminEvent && (
+          <div className={styles.adminEventSection}>
+            <p>Actualmente eres el administrador de este evento deportivo:</p>
+            <div
+              className={styles.eventCard}
+              onClick={() => navigate(`/meeting/${adminEvent.id}`)}
+            >
+              <h3 className={styles.sportTitle}>
+  {getSportIcon(adminEvent.sport)}
+  {adminEvent.sport.charAt(0).toUpperCase() + adminEvent.sport.slice(1)}
+</h3>
+
+
+              <p>
+                <strong>Lugar:</strong> {adminEvent.location}
+              </p>
+              <p>
+                <strong>Fecha:</strong> {adminEvent.date}
+              </p>
+              <p>
+                <strong>Hora:</strong> {adminEvent.time}
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
