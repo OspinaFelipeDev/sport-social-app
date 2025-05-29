@@ -37,6 +37,7 @@ function App() {
         <Route path="/assignPositions" element={<AssignPositions />} />
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/participants" element={<Participants />} />
+        <Route path="/participants/:id" element={<Participants />} />
         <Route path="/fileMeeting" element={<FileMeeting />} />
         <Route path="/participantCars" element={<ParticipantCard />} />
         <Route path="/eventCard" element={<EventCard />} />

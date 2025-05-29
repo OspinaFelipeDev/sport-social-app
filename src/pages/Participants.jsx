@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom"; // <-- Agregado useParams
 import styles from "../styles/Participants.module.css";
 import chatIcon from "../assets/chat.png";
-
-import { db } from "../../src/firebase";
 import { doc, getDoc } from "firebase/firestore";
-
+import { db } from "../../src/firebase";
 import ParticipantCard from "./ParticipantCard";
 
 export default function Participants() {
   const location = useLocation();
-  const eventoId = location.state?.id;
+  const { id: paramId } = useParams(); // <-- Obtener id desde la URL
+  const [eventoId, setEventoId] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [participants, setParticipants] = useState([]);
 
   useEffect(() => {
+    // Usa primero location.state si existe, sino el id de la URL
     if (location.state) {
+      setEventoId(location.state.id);
       setIsAdmin(location.state.isAdmin || false);
+    } else if (paramId) {
+      setEventoId(paramId);
     }
-  }, [location.state]);
+  }, [location.state, paramId]);
 
   useEffect(() => {
     const fetchParticipants = async () => {
@@ -40,13 +43,10 @@ export default function Participants() {
             let equipo = null;
 
             for (const [team, teamPositions] of Object.entries(posiciones)) {
-              for (const [posNum, assignedPlayer] of Object.entries(
-                teamPositions
-              )) {
+              for (const [posNum, assignedPlayer] of Object.entries(teamPositions)) {
                 if (assignedPlayer.uid === p.uid) {
                   posicion = assignedPlayer.posicion;
-                  equipo =
-                    team === "blue" ? "azul" : team === "red" ? "rojo" : team;
+                  equipo = team === "blue" ? "azul" : team === "red" ? "rojo" : team;
                 }
               }
             }
@@ -86,20 +86,15 @@ export default function Participants() {
             to={isAdmin ? `/meeting/${eventoId}` : "/profile"}
             className={styles.iconLink}
           >
-            <i
-              className={`fa-solid fa-circle-arrow-left ${styles.iconoVolver}`}
-            ></i>
+            <i className={`fa-solid fa-circle-arrow-left ${styles.iconoVolver}`}></i>
           </Link>
 
           <p className={styles.title}>Participantes</p>
 
           <div className={styles.chatIconContainer}>
-            <div className={styles.chatIconContainer}>
-  <Link to={`/chat/${eventoId}`} className={styles.chatLink} aria-label="Abrir chat">
-    <img src={chatIcon} alt="chat" />
-  </Link>
-</div>
-
+            <Link to={`/chat/${eventoId}`} className={styles.chatLink} aria-label="Abrir chat">
+              <img src={chatIcon} alt="chat" />
+            </Link>
           </div>
         </div>
       </header>

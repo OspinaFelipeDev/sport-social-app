@@ -142,9 +142,13 @@ const ChatRoom = () => {
         </button>
       </form>
 
-      <Link to={`/meeting/${id}`} className={styles.backLink}>
-        Volver al evento
-      </Link>
+      <Link
+  to={esAdmin ? `/meeting/${id}` : `/participants/${id}`}
+  className={styles.backLink}
+>
+  Volver al evento
+</Link>
+
     </div>
   );
 };
