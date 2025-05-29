@@ -15,11 +15,12 @@ import {
 function Profile() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
-  const [adminEvent, setAdminEvent] = useState(null); // <-- Para evento admin
+  const [adminEvent, setAdminEvent] = useState(null);
+  const [participantEvent, setParticipantEvent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchUserDataAndEvent = async () => {
+    const fetchUserDataAndEvents = async () => {
       const user = auth.currentUser;
       if (!user) {
         navigate("/login");
@@ -37,34 +38,67 @@ function Profile() {
           console.warn("No se encontraron datos del usuario");
         }
 
-        // Buscar evento donde sea administrador
         const eventosRef = collection(db, "eventos");
-        const q = query(eventosRef, where("administradorId", "==", user.uid));
-        const querySnapshot = await getDocs(q);
 
-        if (!querySnapshot.empty) {
-          // Si hay más de un evento admin, puedes manejar eso aquí (por ahora solo el primero)
-          setAdminEvent(querySnapshot.docs[0].data());
-          // Guarda también el id para poder navegar
-          setAdminEvent((prev) => ({
-            ...prev,
-            id: querySnapshot.docs[0].id,
-          }));
+        // Buscar evento donde sea administrador
+        const adminQuery = query(eventosRef, where("administradorId", "==", user.uid));
+        const adminSnapshot = await getDocs(adminQuery);
+
+        if (!adminSnapshot.empty) {
+          const firstAdminEvent = adminSnapshot.docs[0];
+          setAdminEvent({
+            ...firstAdminEvent.data(),
+            id: firstAdminEvent.id,
+          });
         } else {
           setAdminEvent(null);
         }
+
+        // Buscar evento donde sea participante
+        const allEventosSnapshot = await getDocs(eventosRef);
+
+        const participanteEventDoc = allEventosSnapshot.docs.find((doc) => {
+          const data = doc.data();
+          return (
+            data.participantes &&
+            data.participantes.some((p) => p.uid === user.uid)
+          );
+        });
+
+        if (participanteEventDoc) {
+          setParticipantEvent({
+            ...participanteEventDoc.data(),
+            id: participanteEventDoc.id,
+          });
+        } else {
+          setParticipantEvent(null);
+        }
+
       } catch (error) {
-        console.error(
-          "Error al obtener datos del usuario o evento:",
-          error.message
-        );
+        console.error("Error al obtener datos:", error.message);
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchUserDataAndEvent();
+    fetchUserDataAndEvents();
   }, [navigate]);
+
+  const getSportIcon = (sportName) => {
+    switch (sportName.toLowerCase()) {
+      case "fútbol":
+      case "futbol":
+        return <i className="fas fa-futbol" style={{ marginRight: "8px" }}></i>;
+      case "baloncesto":
+        return <i className="fas fa-basketball-ball" style={{ marginRight: "8px" }}></i>;
+      case "voleibol":
+      case "volleyball":
+      case "voley":
+        return <i className="fas fa-volleyball-ball" style={{ marginRight: "8px" }}></i>;
+      default:
+        return <i className="fas fa-dumbbell" style={{ marginRight: "8px" }}></i>;
+    }
+  };
 
   if (isLoading) {
     return <p className={styles.loading}>Cargando perfil...</p>;
@@ -73,23 +107,6 @@ function Profile() {
   if (!userData) {
     return <p className={styles.error}>No se encontraron datos del perfil.</p>;
   }
-
-  const getSportIcon = (sportName) => {
-  switch (sportName.toLowerCase()) {
-    case "fútbol":
-    case "futbol":
-      return <i className="fas fa-futbol" style={{ marginRight: "8px" }}></i>;
-    case "baloncesto":
-      return <i className="fas fa-basketball-ball" style={{ marginRight: "8px" }}></i>;
-    case "voleibol":
-    case "volleyball":
-    case "voley":
-      return <i className="fas fa-volleyball-ball" style={{ marginRight: "8px" }}></i>;
-    default:
-      return <i className="fas fa-dumbbell" style={{ marginRight: "8px" }}></i>; // ícono genérico
-  }
-};
-
 
   return (
     <div className={styles.profileContainer}>
@@ -129,7 +146,7 @@ function Profile() {
           Eventos para hoy
         </button>
 
-        {/* Aquí mostramos la frase y la tarjeta del evento admin */}
+        {/* Evento como administrador */}
         {adminEvent && (
           <div className={styles.adminEventSection}>
             <p>Actualmente eres el administrador de este evento deportivo:</p>
@@ -138,23 +155,39 @@ function Profile() {
               onClick={() => navigate(`/meeting/${adminEvent.id}`)}
             >
               <h3 className={styles.sportTitle}>
-  {getSportIcon(adminEvent.sport)}
-  {adminEvent.sport.charAt(0).toUpperCase() + adminEvent.sport.slice(1)}
-</h3>
-
-
-              <p>
-                <strong>Lugar:</strong> {adminEvent.location}
-              </p>
-              <p>
-                <strong>Fecha:</strong> {adminEvent.date}
-              </p>
-              <p>
-                <strong>Hora:</strong> {adminEvent.time}
-              </p>
+                {getSportIcon(adminEvent.sport)}
+                {adminEvent.sport.charAt(0).toUpperCase() + adminEvent.sport.slice(1)}
+              </h3>
+              <p><strong>Lugar:</strong> {adminEvent.location}</p>
+              <p><strong>Fecha:</strong> {adminEvent.date}</p>
+              <p><strong>Hora:</strong> {adminEvent.time}</p>
             </div>
           </div>
         )}
+
+        {/* Evento como participante */}
+        {participantEvent && !adminEvent && (
+  <div className={styles.participantEventSection}>
+    <p>No olvides ir a tu encuentro deportivo:</p>
+    <div
+      className={styles.eventCard}
+      onClick={() =>
+        navigate("/participants", {
+          state: { id: participantEvent.id, isAdmin: false },
+        })
+      }
+    >
+      <h3 className={styles.sportTitle}>
+        {getSportIcon(participantEvent.sport)}
+        {participantEvent.sport.charAt(0).toUpperCase() + participantEvent.sport.slice(1)}
+      </h3>
+      <p><strong>Lugar:</strong> {participantEvent.location}</p>
+      <p><strong>Fecha:</strong> {participantEvent.date}</p>
+      <p><strong>Hora:</strong> {participantEvent.time}</p>
+    </div>
+  </div>
+)}
+
       </div>
     </div>
   );

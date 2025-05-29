@@ -136,15 +136,12 @@ const Tasks = () => {
           </Link>
           <p id="deporte-seleccionado">Tareas</p>
           <div className={styles.chatIconContainer}>
-            <a
-              href="tu-url-de-chat.html"
-              className={styles.chatLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Abrir chat"
-            >
-              <img src={chatIcon} alt="Chat" />
-            </a>
+            <div className={styles.chatIconContainer}>
+  <Link to={`/chat/${eventoId}`} className={styles.chatLink} aria-label="Abrir chat">
+    <img src={chatIcon} alt="chat" />
+  </Link>
+</div>
+
           </div>
         </div>
       </header>

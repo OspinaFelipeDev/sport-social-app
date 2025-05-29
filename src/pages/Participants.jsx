@@ -94,15 +94,12 @@ export default function Participants() {
           <p className={styles.title}>Participantes</p>
 
           <div className={styles.chatIconContainer}>
-            <a
-              href="tu-url-de-chat.html"
-              className={styles.chatLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Abrir chat"
-            >
-              <img src={chatIcon} alt="Chat" />
-            </a>
+            <div className={styles.chatIconContainer}>
+  <Link to={`/chat/${eventoId}`} className={styles.chatLink} aria-label="Abrir chat">
+    <img src={chatIcon} alt="chat" />
+  </Link>
+</div>
+
           </div>
         </div>
       </header>

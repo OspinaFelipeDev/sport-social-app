@@ -221,6 +221,54 @@ h1 {
     margin-bottom: 0.5rem;
 }
 
+/* 🤝 Sección de participante en eventos */
+.participantEventSection {
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.participantEventSection p {
+    font-size: 1.6rem;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+}
+
+/* 🎫 Tarjeta del evento donde es participante */
+.participantCard {
+    cursor: pointer;
+    border: 1px solid #ccc;
+    padding: 1.6rem;
+    border-radius: 1rem;
+    background-color: #e6f0ff; /* color más claro para distinguir al participante */
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.participantCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: var(--color-white);
+}
+
+.participantCard h3 {
+    font-size: 2rem;
+    color: var(--color-blue);
+    margin-bottom: 0.8rem;
+}
+
+.participantCard p {
+    font-size: 1.6rem;
+    color: var(--color-secondary);
+    margin: 0.3rem 0;
+}
+
+.sportTitle {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+
 
 
 

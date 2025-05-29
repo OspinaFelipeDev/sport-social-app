@@ -176,13 +176,12 @@ const AssignPositions = () => {
           </Link>
           <p>Asignar posiciones</p>
           <div className={styles.chatIconContainer}>
-            <a
-              href="tu-url-de-chat.html"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={chatIcon} alt="chat" />
-            </a>
+            <div className={styles.chatIconContainer}>
+  <Link to={`/chat/${eventoId}`} className={styles.chatLink} aria-label="Abrir chat">
+    <img src={chatIcon} alt="chat" />
+  </Link>
+</div>
+
           </div>
         </div>
       </header>
