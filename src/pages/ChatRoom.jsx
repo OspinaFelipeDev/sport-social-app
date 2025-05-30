@@ -50,9 +50,7 @@ const ChatRoom = () => {
 
     const esAdmin = usuarioActual.uid === evento.administradorId;
 
-    const uidsParticipantes = (evento.participantes || []).map(
-      (p) => p.uid
-    );
+    const uidsParticipantes = (evento.participantes || []).map((p) => p.uid);
     const esParticipante = uidsParticipantes.includes(usuarioActual.uid);
 
     if (!esAdmin && !esParticipante) return;
@@ -143,12 +141,11 @@ const ChatRoom = () => {
       </form>
 
       <Link
-  to={esAdmin ? `/meeting/${id}` : `/participants/${id}`}
-  className={styles.backLink}
->
-  Volver al evento
-</Link>
-
+        to={esAdmin ? `/meeting/${id}` : `/participants/${id}`}
+        className={styles.backLink}
+      >
+        Volver al evento
+      </Link>
     </div>
   );
 };
